@@ -1,31 +1,9 @@
-angular.module('F1FeederApp.controllers', []).
+angular.module('animalapp.controllers', []).
 
-  /* Drivers controller */
-  controller('driversController', function($scope, ergastAPIservice) {
-    $scope.nameFilter = null;
-    $scope.driversList = [];
-    $scope.searchFilter = function (driver) {
-        var re = new RegExp($scope.nameFilter, 'i');
-        return !$scope.nameFilter || re.test(driver.Driver.givenName) || re.test(driver.Driver.familyName);
-    };
-
-    ergastAPIservice.getDrivers().success(function (response) {
-        //Digging into the response to get the relevant data
-        $scope.driversList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-    });
-  }).
-
-  /* Driver controller */
-  controller('driverController', function($scope, $routeParams, ergastAPIservice) {
-    $scope.id = $routeParams.id;
-    $scope.races = [];
-    $scope.driver = null;
-
-    ergastAPIservice.getDriverDetails($scope.id).success(function (response) {
-        $scope.driver = response.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
-    });
-
-    ergastAPIservice.getDriverRaces($scope.id).success(function (response) {
-        $scope.races = response.MRData.RaceTable.Races;
-    });
-  });
+controller('formCtrl', function($scope, $http) {
+    $scope.insertdata = function() {
+        console.log($scope);
+        $http.post("functions/create_animal.php", {'tagId':$scope.user.tagId, 'breed_id':$scope.user.breed_id, 'dob':$scope.user.dob, 'sex':$scope.user.sex, 'notes':$scope.user.notes});
+        // $http.post("insert.php", {'firstName':$scope.firstName, 'lastName':$scope.lastName}).success(function(data,status,headers,config){console.log()});
+      };
+});

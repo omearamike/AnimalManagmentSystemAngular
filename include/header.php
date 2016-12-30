@@ -1,51 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>F-1 Feeder</title>
+  <title>Farm App</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
 </head>
 
-<body ng-app="F1FeederApp">
-  <!-- <div header></div> -->
-
-    <body>
   <div class="container-fluid">
   	<div class="row">
   		<div class="col-md-12">
   			<ul class="nav nav-tabs">
   				<li>
-  					<a href="home.php">Home</a>
+  					<a href="#/home">Home</a>
   				</li>
   				<li>
-  					<a href="create.php">Create</a>
+  					<a href="#/create">Create</a>
   				</li>
           <li>
-            <a href="update.php">Update</a>
+            <a href="#/update">Update</a>
           </li>
   				<li>
-  					<a href="records.php">Display all records</a>
-  				</li>
-  				<li class="dropdown pull-right">
-  					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>
-  					<ul class="dropdown-menu">
-  						<li>
-  							<a href="#">Action</a>
-  						</li>
-  						<li>
-  							<a href="#">Another action</a>
-  						</li>
-  						<li>
-  							<a href="#">Something else here</a>
-  						</li>
-  						<li class="divider">
-  						</li>
-  						<li>
-  							<a href="#">Separated link</a>
-  						</li>
-  					</ul>
+  					<a href="#/display">Display all records</a>
   				</li>
   			</ul>
       </div>

@@ -1,13 +1,17 @@
-var app = angular.module('F1FeederApp', [
-  'F1FeederApp.services',
-  'F1FeederApp.controllers',
+angular.module('animalapp', [
+  'animalapp.services',
+  'animalapp.controllers',
   'ngRoute'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-	when("/drivers",
-  {templateUrl: "partials/drivers.html", controller: "driversController"}).
-	when("/drivers/:id",
-  {templateUrl: "partials/driver.html", controller: "driverController"}).
-	otherwise({redirectTo: '/drivers'});
+	when("/create",
+  {templateUrl: "partials/create.php", controller: "formCtrl"}).
+  when("/display",
+  {templateUrl: "partials/display.php", controller: "formCtrl"}).
+  when("/update",
+  {templateUrl: "partials/update.php", controller: "formCtrl"}).
+  when("/home",
+  {templateUrl: "partials/home.php", controller: "formCtrl"}).
+	otherwise({redirectTo: '/home'});
 }]);
