@@ -13,8 +13,6 @@ $animal = new Animal($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// echo $data;
-echo "the create_animalphp file";
 // set product property values
 $animal->tagId = $data->tagId;
 $animal->breed_id = $data->breed_id;
