@@ -18,30 +18,22 @@ class Animal{
     }
 
 
+
+
     function create(){
 
         // query to insert record
-        // $query = "INSERT INTO " . $this->table_name . "SET tagId=:tagId, breed_id=:breed_id, dob=:dob, sex=:sex, notes=:notes";
-        // $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (:tagId, :breed_id, STR_TO_DATE(:dob, '%Y-%m-%d'), :sex, :notes, null"
-        // $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (123999, 1, STR_TO_DATE('2013-11-11', '%Y-%m-%d'), 1, 'kdsfk', null)";
-        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (123589633, null, null, null, null, null)";
+        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_id), STR_TO_DATE(:dob, '%Y-%m-%d'), (SELECT sex_id FROM sex WHERE sex_type = :sex), :notes, null)";
 
         $stmt = $this->conn->prepare($query);
 
-        // posted values
-        $this->tagId=htmlspecialchars(strip_tags($this->tagId));
-        $this->breed_id=htmlspecialchars(strip_tags($this->breed_id));
-        $this->dob=htmlspecialchars(strip_tags($this->dob));
-        $this->sex=htmlspecialchars(strip_tags($this->sex));
-        $this->notes=htmlspecialchars(strip_tags($this->notes));
-                // $myVar = $statement->bindParam(':tagId', $this->request->tagId, PDO::PARAM_INT);
         // bind values
-        $stmt->bindParam(':tagId', $this->request->tagId);
-        $stmt->bindParam(":breed_id", $this->breed_id);
-        $stmt->bindParam(":dob", $this->dob);
-        $stmt->bindParam(":sex", $this->sex);
-        $stmt->bindParam(":notes", $this->notes);
-        // $stmt->execute();
+        $stmt->bindParam(':tagId', $this->tagId, PDO::PARAM_INT);
+        $stmt->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
+        $stmt->bindParam(":dob", $this->dob, PDO::PARAM_STR);
+        $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
+        $stmt->bindParam(":notes", $this->notes, PDO::PARAM_STR);
+
         // execute query
         if($stmt->execute()){
             return true;
