@@ -1,0 +1,470 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Dec 31, 2016 at 02:29 AM
+-- Server version: 5.5.42
+-- PHP Version: 7.0.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `farmsystem`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animal`
+--
+
+CREATE TABLE `animal` (
+  `tag_id` int(10) NOT NULL,
+  `GMT_Added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `breed_id` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `sex` int(3) NOT NULL,
+  `notes` varchar(500) DEFAULT NULL,
+  `breedbreed_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `animal`
+--
+ALTER TABLE `animal`
+  ADD PRIMARY KEY (`tag_id`,`sex`),
+  ADD KEY `FKanimal949807` (`breedbreed_id`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  -- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Dec 31, 2016 at 02:34 AM
+-- Server version: 5.5.42
+-- PHP Version: 7.0.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `farmsystem`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animal`
+--
+
+CREATE TABLE `animal` (
+  `tag_id` BIGINT(20) NOT NULL,
+  `GMT_Added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `breed_id` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `sex` int(3) NOT NULL,
+  `notes` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animalmanagment`
+--
+
+CREATE TABLE `animalmanagment` (
+  `care_id` int(11) NOT NULL,
+  `tag_id` int(13) NOT NULL,
+  `caredetails_id` int(11) NOT NULL,
+  `admindate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `breed`
+--
+
+CREATE TABLE `breed` (
+  `breed_id` int(11) NOT NULL,
+  `breed_name` varchar(255) DEFAULT NULL,
+  `breed_properties` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `breed`
+--
+
+INSERT INTO `breed` (`breed_id`, `breed_name`, `breed_properties`) VALUES
+(1, 'CHX', 'Big Strong'),
+(2, 'LMX', NULL),
+(3, 'AAX', NULL),
+(4, 'LM', NULL),
+(5, 'HEX', NULL),
+(6, 'SAX', NULL),
+(7, 'HE', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `caredetails`
+--
+
+CREATE TABLE `caredetails` (
+  `caredetails_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diet`
+--
+
+CREATE TABLE `diet` (
+  `diet_id` int(11) NOT NULL,
+  `lot_id` int(11) NOT NULL,
+  `feedtype_id` int(11) NOT NULL,
+  `dailyvolume` int(11) DEFAULT NULL,
+  `startdate` date DEFAULT NULL,
+  `enddate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedlot`
+--
+
+CREATE TABLE `feedlot` (
+  `lot_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedlotlocation`
+--
+
+CREATE TABLE `feedlotlocation` (
+  `location_id` int(11) NOT NULL,
+  `lot_id` int(11) NOT NULL,
+  `location` int(11) NOT NULL,
+  `name` int(11) DEFAULT NULL,
+  `feedlotlot_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedtype`
+--
+
+CREATE TABLE `feedtype` (
+  `feedtype_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `priceperkg` int(11) DEFAULT NULL,
+  `dietdiet_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `location`
+--
+
+CREATE TABLE `location` (
+  `location` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lot information`
+--
+
+CREATE TABLE `lot information` (
+  `lot_id` int(11) DEFAULT NULL,
+  `tag_id` int(13) DEFAULT NULL,
+  `name` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movement`
+--
+
+CREATE TABLE `movement` (
+  `movement_id` int(11) NOT NULL,
+  `movementDate` date DEFAULT NULL,
+  `lot_id` int(11) NOT NULL,
+  `animaltag_id` int(13) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sex`
+--
+
+CREATE TABLE `sex` (
+  `sex_id` int(11) NOT NULL,
+  `sex_type` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sex`
+--
+
+INSERT INTO `sex` (`sex_id`, `sex_type`) VALUES
+(1, 'bullock'),
+(2, 'cow'),
+(3, 'heifer'),
+(4, 'bull'),
+(6, 'FEMALE'),
+(8, 'MALE');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) unsigned NOT NULL,
+  `valueOne` varchar(255) DEFAULT NULL,
+  `valueTwo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`id`, `valueOne`, `valueTwo`) VALUES
+(1, 'Johnny', 'Mc D'),
+(2, 'Tim', 'ODD'),
+(8, 'Matt', 'O"Mear'),
+(10, 'John', 'Mc Mahon'),
+(35, 'dfsfsf', 'fsdfdasfsd'),
+(36, 'dfsfsf', 'fsdfdasfsd'),
+(37, 'dfsfsf', 'fsdfdasfsd'),
+(38, 'dfsfsf', 'fsdfdasfsd'),
+(39, 'dfsfsf', 'fsdfdasfsd'),
+(40, 'dfsfsf', 'fsdfdasfsd'),
+(41, 'dfsfsf', 'fsdfdasfsd'),
+(42, 'dfsfsf', 'fsdfdasfsd'),
+(43, 'dadsad', 'dsfdsfdsfs'),
+(44, 'fsfs', 'sdfsdffffff');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weight`
+--
+
+CREATE TABLE `weight` (
+  `weight_id` int(11) NOT NULL,
+  `tag_id` int(13) NOT NULL,
+  `weight` int(11) DEFAULT NULL,
+  `weightDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `animal`
+--
+ALTER TABLE `animal`
+  ADD PRIMARY KEY (`tag_id`,`sex`);
+
+--
+-- Indexes for table `animalmanagment`
+--
+ALTER TABLE `animalmanagment`
+  ADD PRIMARY KEY (`care_id`),
+  ADD KEY `FKanimalmana985796` (`tag_id`),
+  ADD KEY `FKanimalmana36508` (`caredetails_id`);
+
+--
+-- Indexes for table `breed`
+--
+ALTER TABLE `breed`
+  ADD PRIMARY KEY (`breed_id`);
+
+--
+-- Indexes for table `caredetails`
+--
+ALTER TABLE `caredetails`
+  ADD PRIMARY KEY (`caredetails_id`);
+
+--
+-- Indexes for table `diet`
+--
+ALTER TABLE `diet`
+  ADD PRIMARY KEY (`diet_id`),
+  ADD KEY `FKdiet137441` (`lot_id`),
+  ADD KEY `FKdiet184058` (`feedtype_id`);
+
+--
+-- Indexes for table `feedlot`
+--
+ALTER TABLE `feedlot`
+  ADD PRIMARY KEY (`lot_id`);
+
+--
+-- Indexes for table `feedlotlocation`
+--
+ALTER TABLE `feedlotlocation`
+  ADD PRIMARY KEY (`location_id`),
+  ADD KEY `FKfeedlotloc702339` (`feedlotlot_id`),
+  ADD KEY `FKfeedlotloc376857` (`location`);
+
+--
+-- Indexes for table `feedtype`
+--
+ALTER TABLE `feedtype`
+  ADD PRIMARY KEY (`feedtype_id`);
+
+--
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`location`);
+
+--
+-- Indexes for table `movement`
+--
+ALTER TABLE `movement`
+  ADD PRIMARY KEY (`movement_id`),
+  ADD KEY `FKmovement564702` (`animaltag_id`),
+  ADD KEY `FKmovement376305` (`lot_id`);
+
+--
+-- Indexes for table `sex`
+--
+ALTER TABLE `sex`
+  ADD PRIMARY KEY (`sex_id`);
+
+--
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `weight`
+--
+ALTER TABLE `weight`
+  ADD PRIMARY KEY (`weight_id`),
+  ADD KEY `FKweight776635` (`tag_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `animalmanagment`
+--
+ALTER TABLE `animalmanagment`
+  MODIFY `care_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `breed`
+--
+ALTER TABLE `breed`
+  MODIFY `breed_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `caredetails`
+--
+ALTER TABLE `caredetails`
+  MODIFY `caredetails_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `feedlot`
+--
+ALTER TABLE `feedlot`
+  MODIFY `lot_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `feedtype`
+--
+ALTER TABLE `feedtype`
+  MODIFY `feedtype_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `location` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `sex`
+--
+ALTER TABLE `sex`
+  MODIFY `sex_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `weight`
+--
+ALTER TABLE `weight`
+  MODIFY `weight_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `animalmanagment`
+--
+ALTER TABLE `animalmanagment`
+  ADD CONSTRAINT `FKanimalmana36508` FOREIGN KEY (`caredetails_id`) REFERENCES `caredetails` (`caredetails_id`),
+  ADD CONSTRAINT `FKanimalmana985796` FOREIGN KEY (`tag_id`) REFERENCES `animal` (`tag_id`);
+
+--
+-- Constraints for table `diet`
+--
+ALTER TABLE `diet`
+  ADD CONSTRAINT `FKdiet137441` FOREIGN KEY (`lot_id`) REFERENCES `feedlot` (`lot_id`),
+  ADD CONSTRAINT `FKdiet184058` FOREIGN KEY (`feedtype_id`) REFERENCES `feedtype` (`feedtype_id`);
+
+--
+-- Constraints for table `feedlotlocation`
+--
+ALTER TABLE `feedlotlocation`
+  ADD CONSTRAINT `FKfeedlotloc376857` FOREIGN KEY (`location`) REFERENCES `location` (`location`),
+  ADD CONSTRAINT `FKfeedlotloc702339` FOREIGN KEY (`feedlotlot_id`) REFERENCES `feedlot` (`lot_id`);
+
+--
+-- Constraints for table `movement`
+--
+ALTER TABLE `movement`
+  ADD CONSTRAINT `FKmovement376305` FOREIGN KEY (`lot_id`) REFERENCES `feedlot` (`lot_id`),
+  ADD CONSTRAINT `FKmovement564702` FOREIGN KEY (`animaltag_id`) REFERENCES `animal` (`tag_id`);
+
+--
+-- Constraints for table `weight`
+--
+ALTER TABLE `weight`
+  ADD CONSTRAINT `FKweight776635` FOREIGN KEY (`tag_id`) REFERENCES `animal` (`tag_id`);

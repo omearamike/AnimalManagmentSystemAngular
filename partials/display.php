@@ -38,6 +38,7 @@
 
     <thead>
         <tr>
+            <th class="text-align-left">No</th>
             <th class="text-align-left">Tag ID</th>
             <th class="width-align-left">Breed</th>
             <th class="width-30-pct">DOB (Month Days DOB)</th>
@@ -47,11 +48,13 @@
     </thead>
 
     <tbody ng-init="getAll()">
+        {{x = 0}}
         <tr ng-repeat="d in records">
             <!-- <td>{{ d }}</td> -->
+            <td ng-init="number = countInit()">{{number + 1}}</td>
             <td>{{ d.tag_id }}</td>
             <td>{{ d.breed_name }}</td>
-            <td>{{d.year + d.month}} {{d.days}} </br> {{ d.dob }}</td>
+            <td>{{(d.year * 100)}} {{d.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td>
             <td>{{ d.sex_name }}</td>
             <td>{{ d.notes }}</td>
         </tr>
