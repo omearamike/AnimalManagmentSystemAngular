@@ -54,7 +54,7 @@
             <td ng-init="number = countInit()">{{number + 1}}</td>
             <td>{{ d.tag_id }}</td>
             <td>{{ d.breed_name }}</td>
-            <td>{{(d.year * 100)}} {{d.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td>
+            <td>{{(d.year * )}} {{d.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td>
             <td>{{ d.sex_name }}</td>
             <td>{{ d.notes }}</td>
         </tr>
