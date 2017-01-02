@@ -1,9 +1,10 @@
 <?php
+
 class Database{
 
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "farmsystem";
+    private $db_name = "aa_mi12345";
     private $username = "farmadmin";
     private $password = "mike";
     public $conn;

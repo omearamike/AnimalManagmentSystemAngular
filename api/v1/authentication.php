@@ -55,7 +55,11 @@ $app->post('/signUp', function() use ($app) {
     $herdnumber = $r->customer->herdnumber;
     $password = $r->customer->password;
     $isUserExists = $db->getOneRecord("select 1 from customers_auth where phone='$phone' or email='$email'");
+    require_once 'dbHandler.php';
     if(!$isUserExists){
+
+        $dbInit = new dbHandler();
+        $dbInit->createNewDB($herdnumber);
         $r->customer->password = passwordHash::hash($password);
         $tabble_name = "customers_auth";
         $column_names = array('phone', 'name', 'email', 'password', 'herdnumber');
