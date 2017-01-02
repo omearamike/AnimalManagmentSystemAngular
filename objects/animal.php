@@ -74,11 +74,17 @@ class Animal{
     }
 
     function createUsingCsv(){
-      // $id = $this->tagId;
-        // query to insert record
-        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_id), :dob, (SELECT sex_id FROM sex WHERE sex_type = :sex), null)";
 
+        $addBreeds = "INSERT INTO breed (breed_name) VALUES (:breed_id) ON DUPLICATE KEY UPDATE `breed_name` = :breed_id";
+
+        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_id), :dob, (SELECT sex_id FROM sex WHERE sex_type = :sex), null)";
+        // $stmt = $this->conn->prepare( $query );
+        // $breed_id = :breed_id;
+        $stmt1 = $this->conn->prepare( $addBreeds );
+        $stmt1->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
+        $stmt1->execute();
         $stmt = $this->conn->prepare( $query );
+
         // echo substr($this->tagId, 2);
         // $id = substr($this->tagId, 2);
         // bind values
@@ -86,17 +92,16 @@ class Animal{
         // echo "this test";
         // echo $this->tagId;
         // echo $query;
-
         $originalDate = str_replace("/","-", $this->dob);
         $newDate = date("Y-m-d", strtotime($originalDate));
         // echo $newDate;
         // echo $id;
-        $stmt->bindParam(':tagId', substr($this->tagId, 2), PDO::PARAM_INT);
+        $tagId = substr($this->tagId, 2);
+        $stmt->bindParam(':tagId', $tagId, PDO::PARAM_INT);
         $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
         $stmt->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
+
         $stmt->bindParam(":dob", $newDate, PDO::PARAM_STR);
-
-
         // execute query
         if($stmt->execute()){
             print_r("Record inserted: $this->tagId ");
@@ -104,11 +109,43 @@ class Animal{
         }else{
             echo "<pre>";
                 print_r($stmt->errorInfo());
-                echo $this->tagId;
+                // echo $this->tagId;
             echo "</pre>";
-
             return false;
         }
-    }
+      }
+
+    // function createUsingCsv(){
+    //   // $id = $this->tagId;
+    //     // query to insert record
+    //     // $addBreeds = "INSERT INTO breed (breed_name) VALUES ($this->breed_id)";
+    //     $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES ('1325', (SELECT breed_id FROM breed WHERE breed_name = :breed_id), :dob, (SELECT sex_id FROM sex WHERE sex_type = :sex), null)";
+    //
+    //     $stmt = $this->conn->prepare($query);
+    //
+    //     $originalDate = str_replace("/","-", $this->dob);
+    //     $newDate = date("Y-m-d", strtotime($originalDate));
+    //     // echo $newDate;
+    //     // echo $id;
+    //     echo substr($this->tagId, 2);
+    //     $stmt->bindParam(':tagId', substr($this->tagId, 2), PDO::PARAM_INT);
+    //     $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
+    //     $stmt->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
+    //     $stmt->bindParam(":dob", $newDate, PDO::PARAM_STR);
+    //
+    //
+    //     // execute query
+    //     if($stmt->execute()){
+    //         print_r("Record inserted: $this->tagId ");
+    //         return true;
+    //     }else{
+    //         echo "<pre>";
+    //             print_r($stmt->errorInfo());
+    //             // echo $this->tagId;
+    //         echo "</pre>";
+    //
+    //         return false;
+    //     }
+    // }
 }
 ?>

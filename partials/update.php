@@ -1,4 +1,4 @@
-<div ng-app="animalapp" ng-controller="formCtrl">
+<div ng-app="myApp" ng-controller="formCtrl">
   <form novalidate>
     ID:<br>
     <input name="id" type="text" ng-model="user.id">
@@ -18,7 +18,7 @@
 </div>
 
 <script>
-  var app = angular.module('animalapp', []);
+  var app = angular.module('myApp', []);
   app.controller('formCtrl', function($scope, $http) {
     $scope.insertdata = function() {
         console.log($scope);

@@ -1,6 +1,5 @@
-angular.module('animalapp.controllers', []).
-
-controller('formCtrl', function($scope, $http) {
+// angular.module('myApp.controllers', []).
+app.controller('formCtrl', function($scope, $http) {
 
     $scope.insertdata = function() {
         console.log($scope);

@@ -1,4 +1,4 @@
-<!-- <div ng-app="animalapp" ng-controller="formCtrl"> -->
+<div ng-controller='formCtrl'>
   <form novalidate class="form-group">
     Tag Number:<br>
     <input name="tagId" type="text" ng-model="user.tagId" placeholder="12345678"><br>
@@ -19,6 +19,6 @@
   </form>
 
 
-  <p>form = {{user}}</p>
-  <!-- <p> {{user.firstName}}</p> -->
+  <p>form = {{ user.tagId }}</p>
+  <p> {{user.firstName}}</p>
 </div>

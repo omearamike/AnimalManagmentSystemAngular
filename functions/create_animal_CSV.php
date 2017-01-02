@@ -50,7 +50,6 @@ $csvData = array();
 //Loop through the rows in our CSV file and add them to
 //the PHP array that we created above.
 while (($row = fgetcsv($fh, 0, ",")) !== FALSE) {
-
     // $id = substr($row[0], 2);
     $animal->tagId = $row[0];
     $animal->sex = $row[1];

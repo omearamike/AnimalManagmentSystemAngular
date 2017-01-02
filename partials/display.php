@@ -21,7 +21,7 @@
 <a href="download.php">2. Download File</a>
 
 <script>
-  var app = angular.module('animalapp', []);
+  var app = angular.module('myApp', []);
   app.controller('customersCtrl', function($scope, $http) {
   $http.get("http://localhost:8888/AnimalManagementSystem_v1/functions/getallentriesFunc.php").success(function (response) {
   /*After Successfully fetch the data from JSON file assigning these data to $scope object variable*/
@@ -52,9 +52,10 @@
         <tr ng-repeat="d in records">
             <!-- <td>{{ d }}</td> -->
             <td ng-init="number = countInit()">{{number + 1}}</td>
-            <td>{{ d.tag_id }}</td>
+            <td>IE{{ d.tag_id }}</td>
             <td>{{ d.breed_name }}</td>
-            <td>{{(d.year * )}} {{d.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td>
+            <td>{{ d.dob }}</td>
+            <!-- <td>{{(d.year * )}} {{d.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td> -->
             <td>{{ d.sex_name }}</td>
             <td>{{ d.notes }}</td>
         </tr>

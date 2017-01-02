@@ -299,7 +299,7 @@ CREATE TABLE `weight` (
 -- Indexes for table `animal`
 --
 ALTER TABLE `animal`
-  ADD PRIMARY KEY (`tag_id`,`sex`);
+  ADD PRIMARY KEY (`tag_id`);
 
 --
 -- Indexes for table `animalmanagment`

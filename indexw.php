@@ -16,7 +16,7 @@
 
 <?php include("include/header.php"); ?>
 
-<body ng-app="animalapp">
+<body ng-app="myApp">
   <div class="mainBody">
     <ng-view></ng-view>
   </div>
