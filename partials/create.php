@@ -1,4 +1,4 @@
-<div ng-controller='formCtrl'>
+<div ng-controller='displayCtrl'>
   <form novalidate class="form-group">
     Tag Number:<br>
     <input name="tagId" type="text" ng-model="user.tagId" placeholder="12345678"><br>

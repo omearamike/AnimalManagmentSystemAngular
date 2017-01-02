@@ -20,11 +20,11 @@ app.config(['$routeProvider',
             })
             .when('/create', {
               templateUrl: 'partials/create.php',
-              controller: 'formCtrl'})
+              controller: 'displayCtrl'})
             .when('/display',
                 {title: 'Display',
                 templateUrl: 'partials/display.php',
-                controller: 'formCtrl'})
+                controller: 'displayCtrl'})
             .when('/dashboard', {
                 title: 'Dashboard',
                 templateUrl: 'partials/dashboard.html',
