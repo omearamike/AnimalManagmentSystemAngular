@@ -1,12 +1,13 @@
 <?php
-class Animal{
-    // Functions:
-    // ++ __construct() ++
-    // ++ create() ++ Used to insert data from website to database
-    // ++ readAll() ++ reads every Animal Record in the database
-    // ++ createUsingCsv() ++
-    // ++ readOne() ++ reads every Animal Record in the database
-    // ++ update() ++ reads every Animal Record in the database
+
+/**
+  * @desc This controller will be used to display animal records
+  * @function: __construct(), create(), readAll(), createUsingCsv(), readOne(), update().
+  * @param $scope: is the scope used to bring data which is with in the displayCtrl Controller scope from client(website)
+  * @param $http: Used to create a http request to server
+*/
+
+class Animal    {
 
     // use \PDO;
     private $conn;
@@ -67,6 +68,7 @@ class Animal{
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
     }
 
+    // @requires: values to be passed from functions/Animal/create_animal_CSV.php
     function createUsingCsv(){
 
         // Add NEW breeds to breed table if they do not exist
@@ -92,7 +94,7 @@ class Animal{
 
         // Bind values to insert to database
         $stmt->bindParam(':tagId', $tagId, PDO::PARAM_INT);
-        $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
+        $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT); // $this-> ? is passed in from create_animal_CSV.php
         $stmt->bindParam(":breed_name", $this->breed_name, PDO::PARAM_INT);
         $stmt->bindParam(":dob", $newDate, PDO::PARAM_STR);
 
@@ -106,6 +108,7 @@ class Animal{
             return false;
         }
     }
+
 
     function readOne(){ // used when filling up the update product form
 

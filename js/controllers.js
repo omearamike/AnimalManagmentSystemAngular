@@ -1,21 +1,26 @@
+/**
+  * @desc This controller will be used to display animal records
+  * @function: insertdata(), getAll(), counter(), searchFilter(), readOne(tag_id), updateAnimal(), showCreateForm(), clearForm().
+  * @author Myk O Meara
+  * @required Is called directly from the client display.php
+  * @param $scope: is the scope used to bring data which is with in the displayCtrl Controller scope from client(website)
+  * @param $http: Used to create a http request to server
+*/
 
 app.controller('displayCtrl', function($scope, $http) {
     $scope.nameFilter = null;
     $scope.animalList = [];
 
-
       $scope.insertdata = function() { // Inserts data to the database based on Array submitted from user input
           console.log($scope);
-          $http.post("functions/create_animal.php", {'tagId':$scope.user.tagId, 'breed_name':$scope.user.breed_name, 'dob':$scope.user.dob, 'sex':$scope.user.sex, 'notes':$scope.user.notes});
+          $http.post("functions/Animal/create_animal.php", {'tagId':$scope.user.tagId, 'breed_name':$scope.user.breed_name, 'dob':$scope.user.dob, 'sex':$scope.user.sex, 'notes':$scope.user.notes});
         };
 
-
       $scope.getAll = function(){ // Returns all animals from database
-          $http.get("functions/read_animals.php").success(function(response){
+          $http.get("functions/Animal/read_animals.php").success(function(response){
               $scope.animalList = response;
             });
         };
-
 
       $scope.totalCount = 1; // Counter used for creating an tempepory numbering system on getAll function
       $scope.counter = function() {
@@ -29,14 +34,13 @@ app.controller('displayCtrl', function($scope, $http) {
         };
 
 
-
       $scope.readOne = function(tag_id){ // retrieve record to fill out the form
 
           $('#modal-animal-title').text("Edit Animal"); // change modal title
           $('#btn-update-animal').show(); // show udpate product button
           $('#btn-create-animal').hide(); // show create product button
 
-          $http.post("functions/read_one.php", { // post id of product to be edited
+          $http.post("functions/Animal/read_one.php", { // post id of product to be edited
 
               'tag_id' : tag_id
 
@@ -51,7 +55,7 @@ app.controller('displayCtrl', function($scope, $http) {
               $scope.notes= data[0]['notes'];
 
           $('#modal-animal-form').modal('open'); // show modal
-                Materialize.toast('Record: ' + $scope.tag_id + 'retrieved', 2000);
+              Materialize.toast('Record: ' + $scope.tag_id + 'retrieved', 2000);
           })
           .error(function(data, status, headers, config){
               Materialize.toast('Unable to retrieve record: ' + $scope.tag_id, 2000);
@@ -59,7 +63,7 @@ app.controller('displayCtrl', function($scope, $http) {
         };
 
         $scope.updateAnimal = function(){ // update product record / save changes
-            $http.post('functions/update_animal.php', {
+            $http.post('functions/Animal/update_animal.php', {
                 'tag_id' : $scope.tag_id,
                 'breed_name' : $scope.breed_name,
                 'sex_type' : $scope.sex_type,
@@ -97,7 +101,7 @@ app.controller('displayCtrl', function($scope, $http) {
               $scope.notes = "";
         };
 
-          $scope.createProduct = function(){
+        $scope.createProduct = function(){
 
               $http.post('create_product.php', { // fields in key-value pairs
                       'name' : $scope.name,
