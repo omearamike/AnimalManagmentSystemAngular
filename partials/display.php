@@ -1,10 +1,55 @@
 <div ng-controller="displayCtrl">
 
+
+
+
+  <!-- modal for for creating new product -->
+  <div id="modal-animal-form" class="modal editAnimalPopUp">
+      <div class="modal-content">
+          <h4 id="modal-animal-title">Create New Animal</h4>
+          <div class="row">
+              <div class="input-field col s12">
+                  <input ng-model="tag_id" type="text"/>
+                  <label for="tag_id" class="activeLabel" >Tag ID</label>
+                  <!-- <label for="tag_id">Tag ID</label> -->
+              </div>
+              <div class="input-field col s12">
+                  <input ng-model="breed_name" type="text" class="validate" id="form-name"/>
+                  <label for="breed_name" class="activeLabel">Breed Name</label>
+              </div>
+              <div class="input-field col s12">
+                  <input ng-model="sex_type" type="text" class="validate" id="form-name"/>
+                  <label for="sex_type" class="activeLabel">Sex Type</label>
+              </div>
+              <div class="input-field col s12">
+                  <input ng-model="dob" type="date" class="validate" id="form-name"/>
+                  <label for="dob" class="activeLabel">Date of Birth</label>
+              </div>
+
+              <div class="input-field col s12">
+                  <textarea ng-model="notes" type="text" class="validate materialize-textarea"></textarea>
+                  <label for="notes" class="activeLabel">Notes</label>
+              </div>
+
+
+              <div class="input-field col s12">
+                  <a id="btn-create-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createAnimal()"><i class="material-icons left">add</i>Create</a>
+
+                  <a id="btn-update-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateAnimal()"><i class="material-icons left">edit</i>Save Changes</a>
+
+                  <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
+              </div>
+          </div>
+      </div>
+  </div>
+
 <!-- used for searching the current list -->
 <input type="text" ng-model="nameFilter" class="form-control" placeholder="Search animals by Tag ID..." />
 
+
+
 <!-- table that shows product record list -->
-<table class="hoverable bordered">
+<table class="bordered">
     <thead>
         <tr>
             <th class="text-align-left">No</th>
@@ -23,9 +68,9 @@
             <!-- <td {{$index + 1}}</td> -->
             <td>IE{{ animal.tag_id}}</td>
             <td>{{ animal.breed_name }}</td>
-            <td>{{ animal.dob }}</td>
+            <td>{{ animal.dob }} {{animal.year}}</td>
             <!-- <td>{{(animal.year * )}} {{animal.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td> -->
-            <td>{{ animal.sex_name }}</td>
+            <td>{{ animal.sex_type }}</td>
             <td>{{ animal.notes }}</td>
             <td>
               <a ng-click="readOne(animal.tag_id)" class="waves-effect waves-light btn">Edit</a>

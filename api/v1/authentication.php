@@ -1,12 +1,12 @@
 <?php
-$app->get('/session', function() {
-    $db = new DbHandler();
-    $session = $db->getSession();
-    $response["uid"] = $session['uid'];
-    $response["email"] = $session['email'];
-    $response["name"] = $session['name'];
-    echoResponse(200, $session);
-});
+// $app->get('/session', function() {
+//     $db = new DbHandler();
+//     $session = $db->getSession();
+//     $response["uid"] = $session['uid'];
+//     $response["email"] = $session['email'];
+//     $response["name"] = $session['name'];
+//     echoResponse(200, $session);
+// });
 
 $app->post('/login', function() use ($app) {
     require_once 'passwordHash.php';

@@ -3,7 +3,7 @@
     Tag Number:<br>
     <input name="tagId" type="text" ng-model="user.tagId" placeholder="12345678"><br>
     Breed:<br>
-    <input name="breed_id" type="text" ng-model="user.breed_id" placeholder="LMX">
+    <input name="breed_name" type="text" ng-model="user.breed_name" placeholder="LMX">
     <br>
     Date of Birth:<br>
     <input name="dob" type="text" ng-model="user.dob" placeholder="2015-12-12">

@@ -18,6 +18,9 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/signup.html',
                 controller: 'authCtrl'
             })
+            .otherwise({
+                redirectTo: '/login'
+            })
             .when('/create', {
               templateUrl: 'partials/create.php',
               controller: 'displayCtrl'})
@@ -35,10 +38,8 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/login.html',
                 controller: 'authCtrl',
                 role: '0'
-            })
-            .otherwise({
-                redirectTo: '/login'
             });
+
   }])
     .run(function ($rootScope, $location, Data) {
         $rootScope.$on("$routeChangeStart", function (event, next, current) {

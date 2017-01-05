@@ -1,13 +1,9 @@
 <?php
-// get database connection
-// include_once '/config/database.php';
+
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../objects/animal.php';
 $database = new Database();
 $db = $database->getConnection();
-
-// instantiate product object
-// include_once '/../objects/animal.php';
-require_once __DIR__ . '/../objects/animal.php';
 $animal = new Animal($db);
 
 // get posted data
@@ -15,7 +11,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 // set product property values
 $animal->tagId = $data->tagId;
-$animal->breed_id = $data->breed_id;
+$animal->breed_name = $data->breed_name;
 $animal->dob = $data->dob;
 $animal->sex = $data->sex;
 $animal->notes = $data->notes;

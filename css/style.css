@@ -1,8 +1,8 @@
 # Empty CSS file for your own CSS
 
-.width-30-pct{
+/*.width-30-pct{
     width:30%;
-}
+}*/
 
 .text-align-center{
     text-align:center;
@@ -32,3 +32,15 @@ td {
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
   }
+
+
+.editAnimalPopUp {
+  max-height: 80%;
+  width: 80%;
+}
+
+.activeLabel {
+  font-size: 0.8rem;
+-webkit-transform: translateY(-140%);
+transform: translateY(-140%);
+}

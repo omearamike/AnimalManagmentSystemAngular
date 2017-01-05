@@ -23,14 +23,14 @@ class Animal{
     function create(){
 
         // query to insert record
-        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_id), STR_TO_DATE(:dob, '%Y-%m-%d'), (SELECT sex_id FROM sex WHERE sex_type = :sex), :notes)";
+        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_name), STR_TO_DATE(:dob, '%Y-%m-%d'), (SELECT sex_id FROM sex WHERE sex_type = :sex), :notes)";
         // $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_id), STR_TO_DATE(:dob, '%Y-%m-%d'), (SELECT sex_id FROM sex WHERE sex_type = :sex), :notes, null)";
 
         $stmt = $this->conn->prepare($query);
 
         // bind values
         $stmt->bindParam(':tagId', $this->tagId, PDO::PARAM_STR);
-        $stmt->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
+        $stmt->bindParam(":breed_name", $this->breed_name, PDO::PARAM_INT);
         $stmt->bindParam(":dob", $this->dob, PDO::PARAM_STR);
         $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
         $stmt->bindParam(":notes", $this->notes, PDO::PARAM_STR);
@@ -51,16 +51,11 @@ class Animal{
     // read all animals
     function readAll(){
 
-        $query = "SELECT a.tag_id as tag_id, b.breed_name as breed_name, a.dob as dob, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%y' ) * 12 AS year,
-        DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%m') AS month,
-        DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%d' ) AS days,
-        s.sex_type as sex_name, a.notes as notes FROM animal a
-        join breed b on a.breed_id = b.breed_id
-        join sex s on a.sex = s.sex_id order by a.tag_id";
-        // $query = "SELECT a.tag_id as tag_id, b.breed_name as breed_name, a.dob as dob, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%y' ) * 12 AS year,
+        $query = "SELECT a.tag_id as tag_id, b.breed_name as breed_name, a.dob as dob, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%y' ) AS year, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%m') - 1 AS month, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%d' ) AS days, s.sex_type as sex_type, a.notes as notes FROM animal a join breed b on a.breed_id = b.breed_id join sex s on a.sex = s.sex_id ORDER BY `a`.`dob` ASC";
+        // $query = "SELECT a.tag_id as tag_id, b.breed_name as breed_name, a.dob as dob, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%y %m %d' ) AS year,
         // DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%m') AS month,
         // DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%d' ) AS days,
-        // s.sex_type as sex_name, a.notes as notes FROM animal a
+        // s.sex_type as sex_type, a.notes as notes FROM animal a
         // join breed b on a.breed_id = b.breed_id
         // join sex s on a.sex = s.sex_id order by a.tag_id";
 
@@ -77,11 +72,11 @@ class Animal{
 
         $addBreeds = "INSERT INTO breed (breed_name) VALUES (:breed_id) ON DUPLICATE KEY UPDATE `breed_name` = :breed_id";
 
-        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_id), :dob, (SELECT sex_id FROM sex WHERE sex_type = :sex), null)";
+        $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES (:tagId, (SELECT breed_id FROM breed WHERE breed_name = :breed_name), :dob, (SELECT sex_id FROM sex WHERE sex_type = :sex), null)";
         // $stmt = $this->conn->prepare( $query );
         // $breed_id = :breed_id;
         $stmt1 = $this->conn->prepare( $addBreeds );
-        $stmt1->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
+        $stmt1->bindParam(":breed_name", $this->breed_name, PDO::PARAM_INT);
         $stmt1->execute();
         $stmt = $this->conn->prepare( $query );
 
@@ -99,8 +94,7 @@ class Animal{
         $tagId = substr($this->tagId, 2);
         $stmt->bindParam(':tagId', $tagId, PDO::PARAM_INT);
         $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
-        $stmt->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
-
+        $stmt->bindParam(":breed_name", $this->breed_name, PDO::PARAM_INT);
         $stmt->bindParam(":dob", $newDate, PDO::PARAM_STR);
         // execute query
         if($stmt->execute()){
@@ -115,37 +109,61 @@ class Animal{
         }
       }
 
-    // function createUsingCsv(){
-    //   // $id = $this->tagId;
-    //     // query to insert record
-    //     // $addBreeds = "INSERT INTO breed (breed_name) VALUES ($this->breed_id)";
-    //     $query = "INSERT INTO animal (tag_id, breed_id, dob, sex, notes) VALUES ('1325', (SELECT breed_id FROM breed WHERE breed_name = :breed_id), :dob, (SELECT sex_id FROM sex WHERE sex_type = :sex), null)";
-    //
-    //     $stmt = $this->conn->prepare($query);
-    //
-    //     $originalDate = str_replace("/","-", $this->dob);
-    //     $newDate = date("Y-m-d", strtotime($originalDate));
-    //     // echo $newDate;
-    //     // echo $id;
-    //     echo substr($this->tagId, 2);
-    //     $stmt->bindParam(':tagId', substr($this->tagId, 2), PDO::PARAM_INT);
-    //     $stmt->bindParam(":sex", $this->sex, PDO::PARAM_INT);
-    //     $stmt->bindParam(":breed_id", $this->breed_id, PDO::PARAM_INT);
-    //     $stmt->bindParam(":dob", $newDate, PDO::PARAM_STR);
-    //
-    //
-    //     // execute query
-    //     if($stmt->execute()){
-    //         print_r("Record inserted: $this->tagId ");
-    //         return true;
-    //     }else{
-    //         echo "<pre>";
-    //             print_r($stmt->errorInfo());
-    //             // echo $this->tagId;
-    //         echo "</pre>";
-    //
-    //         return false;
-    //     }
-    // }
+    // used when filling up the update product form
+function readOne(){
+
+    // query to read single record
+    // $query = "SELECT a.tag_id AS tag_id, b.breed_name AS breed_name FROM animal a join breed b on a.breed_id = b.breed_id WHERE tag_id = 234";
+     $query = "SELECT a.tag_id as tag_id, b.breed_name as breed_name, a.dob as dob, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%y' ) AS year, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%m')  AS month, DATE_FORMAT( FROM_DAYS( DATEDIFF(CURRENT_DATE, dob) ), '%d' ) AS days, s.sex_type as sex_type, a.notes as notes FROM animal a join breed b on a.breed_id = b.breed_id join sex s on a.sex = s.sex_id WHERE tag_id = :tag_id";
+
+
+
+    $stmt = $this->conn->prepare( $query );  // prepare query statement
+
+    $stmt->bindParam(":tag_id", $this->tag_id, PDO::PARAM_INT); // bind tag_id of product to be updated
+
+    $stmt->execute();  // execute query
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC); // get retrieved row
+
+    // set values to object properties
+    $this->tag_id = $row['tag_id'];
+    $this->breed_name = $row['breed_name'];
+    $this->sex_type = $row['sex_type'];
+    $tmpDob = $row['dob'];
+    $tmpDob = str_replace("/","-", $tmpDob);
+    $this->dob = date("Y-m-d", strtotime($tmpDob));
+    $this->notes = $row['notes'];
+}
+
+// update the product
+function update(){
+
+    // update query
+    $query = "UPDATE animal SET tag_id = :tag_id,
+              breed_id = (SELECT breed_id FROM breed WHERE breed_name = :breed_name),
+              dob = :dob,
+              sex = (SELECT sex_id FROM sex WHERE sex_type = :sex_type),
+              notes = :notes
+              WHERE tag_id = :tag_id";
+
+
+    // prepare query statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(":tag_id", $this->tag_id, PDO::PARAM_INT);
+    $stmt->bindParam(":breed_name", $this->breed_name, PDO::PARAM_INT);
+    $stmt->bindParam(":sex_type", $this->sex_type, PDO::PARAM_INT);
+    $stmt->bindParam(":dob", $this->dob, PDO::PARAM_STR);
+    $stmt->bindParam(":notes", $this->notes, PDO::PARAM_STR);
+
+    // execute the query
+    if($stmt->execute()){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 }
 ?>

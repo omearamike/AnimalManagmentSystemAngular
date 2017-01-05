@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+  <title>Farm App</title>
 
-  <head>
-    <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-          <title>AngularJS Authentication App</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
           <!-- Libs -->
-          <script src="js/scripts/angular.min.js"></script>
-          <script src="js/scripts/angular-route.min.js"></script>
-          <script src="js/scripts/angular-animate.min.js" ></script>
-          <script src="js/scripts/jquery.js"></script>
-          <script src="js/scripts/toaster.js"></script>
-          <script src="js/app.js"></script>
-          <script src="js/controllers.js"></script>
-          <script src="js/data.js"></script>
-          <script src="js/directives.js"></script>
-          <script src="js/authCtrl.js"></script>
+          <script type="text/javascript" src="js/scripts/angular.min.js"></script>
+          <script type="text/javascript" src="js/scripts/angular-route.min.js"></script>
+          <script type="text/javascript" src="js/scripts/angular-animate.min.js" ></script>
+          <script type="text/javascript" src="js/scripts/jquery.js"></script>
+          <script type="text/javascript" src="js/jquery/displayjq.js"></script>
+          <script type="text/javascript" src="js/scripts/toaster.js"></script>
+          <script type="text/javascript" src="js/app.js"></script>
+          <script type="text/javascript" src="js/controllers.js"></script>
+          <script type="text/javascript" src="js/data.js"></script>
+          <script type="text/javascript" src="js/directives.js"></script>
+          <script type="text/javascript" src="js/authCtrl.js"></script>
           <!-- Bootstrap -->
           <link href="css/bootstrap.min.css" rel="stylesheet">
-            <link href="css/custom.css" rel="stylesheet">
-            <link href="css/style.css" rel="stylesheet">
-              <link href="css/toaster.css" rel="stylesheet">
+          <link href="css/custom.css" rel="stylesheet">
+          <link href="css/toaster.css" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+          <link href="css/style.css" rel="stylesheet">
+
+
                 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
                 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
                 <!--[if lt IE 9]><link href= "css/bootstrap-theme.css"rel= "stylesheet" >
