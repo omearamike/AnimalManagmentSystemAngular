@@ -27,7 +27,7 @@ app.config(['$routeProvider',
                 controller: 'displayCtrl'})
             .when('/managefeedlot',
                 {title: 'Manage Feedlot',
-                templateUrl: 'partials/Feedlot/managefeedlot.php',
+                templateUrl: 'partials/Feedlot/display.php',
                 controller: 'feedlotCtrl'})
             .when('/dashboard', {
                 title: 'Dashboard',

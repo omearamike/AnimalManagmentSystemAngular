@@ -8,9 +8,9 @@
   				<li>
   					<a href="#/create">Create</a>
   				</li>
-          <li>
-            <a href="#/update">Update</a>
-          </li>
+                <li>
+                    <a href="#/managefeedlot">Manage Feedlots</a>
+                </li>
   				<li>
   					<a href="#/display">Display all records</a>
   				</li>

@@ -4,25 +4,25 @@
   <title>Farm App</title>
 
           <!-- Libs -->
-          <script type="text/javascript" src="js/scripts/angular.min.js"></script>
-          <script type="text/javascript" src="js/scripts/angular-route.min.js"></script>
-          <script type="text/javascript" src="js/scripts/angular-animate.min.js" ></script>
-          <script type="text/javascript" src="js/app.js"></script>
-          <script type="text/javascript" src="js/scripts/jquery.js"></script>
-          <script type="text/javascript" src="js/jquery/displayjq.js"></script>
-          <script type="text/javascript" src="js/scripts/toaster.js"></script>
+          <script type="text/javascript" src="scripts/vendors/angular.min.js"></script>
+          <script type="text/javascript" src="scripts/vendors/angular-route.min.js"></script>
+          <script type="text/javascript" src="scripts/vendors/angular-animate.min.js" ></script>
+          <script type="text/javascript" src="scripts/app.js"></script>
+          <script type="text/javascript" src="scripts/vendors/jquery.js"></script>
+          <script type="text/javascript" src="scripts/vendors/displayjq.js"></script>
+          <script type="text/javascript" src="scripts/vendors/toaster.js"></script>
 
-          <script type="text/javascript" src="js/controllers.js"></script>
-          <script type="text/javascript" src="js/data.js"></script>
-          <script type="text/javascript" src="js/directives.js"></script>
-          <script type="text/javascript" src="js/authCtrl.js"></script>
+          <script type="text/javascript" src="scripts/controllers/controllers.js"></script>
+          <script type="text/javascript" src="scripts/factory/data.js"></script>
+          <script type="text/javascript" src="scripts/directives/directives.js"></script>
+          <script type="text/javascript" src="scripts/controllers/authCtrl.js"></script>
 
           <!-- Bootstrap -->
           <link href="css/bootstrap.min.css" rel="stylesheet">
           <link href="css/custom.css" rel="stylesheet">
           <link href="css/toaster.css" rel="stylesheet">
           <link rel="stylesheet" href="css/materialize.min.css">
-          <script type="text/javascript" src="js/scripts/materialize.min.js"></script>
+          <script type="text/javascript" src="scripts/vendors/materialize.min.js"></script>
           <link rel="stylesheet" href="css/style.css">
 </head>
 
