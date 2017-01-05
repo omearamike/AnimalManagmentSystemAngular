@@ -1,9 +1,5 @@
 # Empty CSS file for your own CSS
 
-/*.width-30-pct{
-    width:30%;
-}*/
-
 .text-align-center{
     text-align:center;
 }
@@ -13,7 +9,6 @@
 }
 
 .mainBody {
-  /*background-color: red;*/
   padding: 4% 10% 0 10%;
 }
 
@@ -33,14 +28,50 @@ td {
     -webkit-tap-highlight-color: transparent;
   }
 
-
+/*Fixes Issue: Edit Animal popup window too small*/
 .editAnimalPopUp {
   max-height: 80%;
   width: 80%;
+  z-index: auto important;
 }
 
+/*Fixes Issue: Labels too big on popup editor*/
 .activeLabel {
   font-size: 0.8rem;
--webkit-transform: translateY(-140%);
-transform: translateY(-140%);
+  -webkit-transform: translateY(-140%);
+  transform: translateY(-140%);
+}
+
+.mytooltip {
+    /*position: relative;
+    display: inline-block;*/
+    position: absolute;
+    border-bottom: 1px black;
+    opacity: 1;
+}
+
+.mytooltip .mytooltiptext {
+
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+}
+
+.mytooltip:hover .mytooltiptext {
+    visibility: visible;
+}
+.test {
+    /*width: 500px;
+    height: 500px;
+    background-color: red;*/
 }

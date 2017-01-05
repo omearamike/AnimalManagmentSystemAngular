@@ -3,51 +3,45 @@ app.controller('displayCtrl', function($scope, $http) {
     $scope.nameFilter = null;
     $scope.animalList = [];
 
-      // Inserts data to the database based on Array submitted from user input
-      $scope.insertdata = function() {
+
+      $scope.insertdata = function() { // Inserts data to the database based on Array submitted from user input
           console.log($scope);
           $http.post("functions/create_animal.php", {'tagId':$scope.user.tagId, 'breed_name':$scope.user.breed_name, 'dob':$scope.user.dob, 'sex':$scope.user.sex, 'notes':$scope.user.notes});
         };
 
-      // Returns all animals from database
-      $scope.getAll = function(){
+
+      $scope.getAll = function(){ // Returns all animals from database
           $http.get("functions/read_animals.php").success(function(response){
               $scope.animalList = response;
-              // console.log($scope.animalList);
-          });
-      };
+            });
+        };
 
-      // Counter used for creating an tempepory numbering system on getAll function
-        $scope.totalCount = 1;
-        $scope.counter = function() {
+
+      $scope.totalCount = 1; // Counter used for creating an tempepory numbering system on getAll function
+      $scope.counter = function() {
           return $scope.totalCount++;
         };
 
-        // Defines what values are searched with the searchFilter search bar
-        $scope.searchFilter = function (animal) {
+
+      $scope.searchFilter = function (animal) { // Defines what values are searched with the searchFilter search bar
             var re = new RegExp($scope.nameFilter, 'i');
             return !$scope.nameFilter || re.test(animal.tag_id);
         };
 
 
-        // retrieve record to fill out the form
-        $scope.readOne = function(tag_id){
 
-          // change modal title
-          $('#modal-animal-title').text("Edit Animal");
+      $scope.readOne = function(tag_id){ // retrieve record to fill out the form
 
-          // show udpate product button
-          $('#btn-update-animal').show();
+          $('#modal-animal-title').text("Edit Animal"); // change modal title
+          $('#btn-update-animal').show(); // show udpate product button
+          $('#btn-create-animal').hide(); // show create product button
 
-          // show create product button
-          $('#btn-create-animal').hide();
+          $http.post("functions/read_one.php", { // post id of product to be edited
 
-          // post id of product to be edited
-          $http.post("functions/read_one.php", {
               'tag_id' : tag_id
+
           })
           .success(function(data, status, headers, config){
-
 
               // put the values in form
               $scope.tag_id = data[0]['tag_id'];
@@ -56,22 +50,15 @@ app.controller('displayCtrl', function($scope, $http) {
               $scope.dob = data[0]['dob'];
               $scope.notes= data[0]['notes'];
 
-              // $scope.name = data[0]["name"];
-              // $scope.description = data[0]["description"];
-              // $scope.price = data[0]["price"];
-
-              // show modal
-              $('#modal-animal-form').modal('open');
-                          Materialize.toast('Record Retrieved', 2000);
+          $('#modal-animal-form').modal('open'); // show modal
+                Materialize.toast('Record: ' + $scope.tag_id + 'retrieved', 2000);
           })
           .error(function(data, status, headers, config){
-              Materialize.toast('Unable to retrieve record.', 4000);
+              Materialize.toast('Unable to retrieve record: ' + $scope.tag_id, 2000);
           });
-          }
+        };
 
-
-        // update product record / save changes
-        $scope.updateAnimal = function(){
+        $scope.updateAnimal = function(){ // update product record / save changes
             $http.post('functions/update_animal.php', {
                 'tag_id' : $scope.tag_id,
                 'breed_name' : $scope.breed_name,
@@ -79,69 +66,54 @@ app.controller('displayCtrl', function($scope, $http) {
                 'dob' : $scope.dob,
                 'notes' : $scope.notes
             }).success(function (data, status, headers, config){
-                // tell the user product record was updated
-                Materialize.toast(data, 4000);
 
-                // close modal
-                $('#modal-animal-form').modal('close');
+                Materialize.toast(data, 4000); // tell the user product record was updated
 
-                // clear modal content
-                $scope.clearForm();
+                $('#modal-animal-form').modal('close'); // close modal
 
-                // refresh the product list
-                $scope.getAll();
+                $scope.clearForm(); // clear modal content
+
+                $scope.getAll(); // refresh the product list
             }).error(function(data, status, headers, config){
                 Materialize.toast(data, 4000);
-            });;
-        }
-
+                });
+        };
 
         $scope.showCreateForm = function(){
-            // clear form
-            $scope.clearForm();
 
-            // change modal title
-            $('#modal-product-title').text("Create New Product");
+            $scope.clearForm(); // clear form
 
-            // hide update product button
-            $('#btn-update-product').hide();
+            $('#modal-product-title').text("Create New Product"); // change modal title
+            $('#btn-update-product').hide(); // hide update product button
+            $('#btn-create-product').show(); // show create product button
 
-            // show create product button
-            $('#btn-create-product').show();
+        };
 
-        }
+        $scope.clearForm = function(){ // clear variable / form values
+              $scope.tag_id = "";
+              $scope.breed_name = "";
+              $scope.sex_type = "";
+              $scope.dob = "";
+              $scope.notes = "";
+        };
 
-          // clear variable / form values
-          $scope.clearForm = function(){
-              $scope.id = "";
-              $scope.name = "";
-              $scope.description = "";
-              $scope.price = "";
-          }
-
-          // create new product
           $scope.createProduct = function(){
 
-              // fields in key-value pairs
-              $http.post('create_product.php', {
+              $http.post('create_product.php', { // fields in key-value pairs
                       'name' : $scope.name,
                       'description' : $scope.description,
                       'price' : $scope.price
                   }
               ).success(function (data, status, headers, config) {
                   console.log(data);
-                  // tell the user new product was created
-                  Materialize.toast(data, 4000);
 
-                  // close modal
-                  $('#modal-product-form').modal('close');
+                  Materialize.toast(data, 4000); // tell the user new product was created
 
-                  // clear modal content
-                  $scope.clearForm();
+                  $('#modal-product-form').modal('close'); // close modal
 
-                  // refresh the list
-                  $scope.getAll();
+                  $scope.clearForm(); // clear modal content
+                  $scope.getAll(); // refresh the list
               });
-          }
+          };
 
 });

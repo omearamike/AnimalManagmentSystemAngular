@@ -1,0 +1,11 @@
+<html><head><title>Slim Application Error</title><style>body{margin:0;padding:30px;font:12px/1.5 Helvetica,Arial,Verdana,sans-serif;}h1{margin:0;font-size:48px;font-weight:normal;line-height:48px;}strong{display:inline-block;width:65px;}</style></head><body><h1>Slim Application Error</h1><p>The application could not run because of the following error:</p><h2>Details</h2><div><strong>Type:</strong> PDOException</div><div><strong>Code:</strong> 1045</div><div><strong>Message:</strong> SQLSTATE[HY000] [1045] Access denied for user 'farmadmin'@'localhost' (using password: YES)</div><div><strong>File:</strong> /home/mdmenter/public_html/farmapp/api/v1/dbHandler.php</div><div><strong>Line:</strong> 97</div><h2>Trace</h2><pre>#0 /home/mdmenter/public_html/farmapp/api/v1/dbHandler.php(97): PDO->__construct('mysql:host=loca...', 'farmadmin', 'mike')
+#1 /home/mdmenter/public_html/farmapp/api/v1/authentication.php(62): DbHandler->createNewDB('MIKE')
+#2 [internal function]: {closure}()
+#3 /home/mdmenter/public_html/farmapp/api/libs/Slim/Route.php(436): call_user_func_array(Object(Closure), Array)
+#4 /home/mdmenter/public_html/farmapp/api/libs/Slim/Slim.php(1307): Slim\Route->dispatch()
+#5 /home/mdmenter/public_html/farmapp/api/libs/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#6 /home/mdmenter/public_html/farmapp/api/libs/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#7 /home/mdmenter/public_html/farmapp/api/libs/Slim/Middleware/PrettyExceptions.php(67): Slim\Middleware\MethodOverride->call()
+#8 /home/mdmenter/public_html/farmapp/api/libs/Slim/Slim.php(1254): Slim\Middleware\PrettyExceptions->call()
+#9 /home/mdmenter/public_html/farmapp/api/v1/index.php(53): Slim\Slim->run()
+#10 {main}</pre></body></html>

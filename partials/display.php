@@ -1,8 +1,5 @@
 <div ng-controller="displayCtrl">
 
-
-
-
   <!-- modal for for creating new product -->
   <div id="modal-animal-form" class="modal editAnimalPopUp">
       <div class="modal-content">
@@ -11,16 +8,18 @@
               <div class="input-field col s12">
                   <input ng-model="tag_id" type="text"/>
                   <label for="tag_id" class="activeLabel" >Tag ID</label>
-                  <!-- <label for="tag_id">Tag ID</label> -->
               </div>
+
               <div class="input-field col s12">
                   <input ng-model="breed_name" type="text" class="validate" id="form-name"/>
                   <label for="breed_name" class="activeLabel">Breed Name</label>
               </div>
+
               <div class="input-field col s12">
                   <input ng-model="sex_type" type="text" class="validate" id="form-name"/>
                   <label for="sex_type" class="activeLabel">Sex Type</label>
               </div>
+
               <div class="input-field col s12">
                   <input ng-model="dob" type="date" class="validate" id="form-name"/>
                   <label for="dob" class="activeLabel">Date of Birth</label>
@@ -30,7 +29,6 @@
                   <textarea ng-model="notes" type="text" class="validate materialize-textarea"></textarea>
                   <label for="notes" class="activeLabel">Notes</label>
               </div>
-
 
               <div class="input-field col s12">
                   <a id="btn-create-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createAnimal()"><i class="material-icons left">add</i>Create</a>
@@ -45,8 +43,6 @@
 
 <!-- used for searching the current list -->
 <input type="text" ng-model="nameFilter" class="form-control" placeholder="Search animals by Tag ID..." />
-
-
 
 <!-- table that shows product record list -->
 <table class="bordered">
@@ -63,18 +59,22 @@
 
     <tbody ng-init="getAll()">
         <tr ng-repeat="animal in animalList | filter:searchFilter">
-            <!-- <td>{{ d }}</td> -->
             <td ng-init="number = counter()">{{number}}</td>
-            <!-- <td {{$index + 1}}</td> -->
-            <td>IE{{ animal.tag_id}}</td>
+            <td><a href="/animaldetails/?{{animal.tag_id}}">IE{{ animal.tag_id}}</a></td>
             <td>{{ animal.breed_name }}</td>
-            <td>{{ animal.dob }} {{animal.year}}</td>
-            <!-- <td>{{(animal.year * )}} {{animal.days}}  Year: {{(d.year) }}</br> {{ d.dob }}</td> -->
+            <!-- <td title="{{ animal.dob }}"> Age: Y{{animal.year}} M{{animal.month}} </td> -->
+            <td>
+            <div class="mytooltip">Age: Y{{animal.year}} M{{animal.month}}
+              <span class="mytooltiptext"><div class="test">{{animal.dob}}</div></span>
+            </div>
+            </td>
+            <!-- <td> Age: {{animal.year}} Dob: {{ animal.dob }}
+             </td> -->
             <td>{{ animal.sex_type }}</td>
             <td>{{ animal.notes }}</td>
             <td>
-              <a ng-click="readOne(animal.tag_id)" class="waves-effect waves-light btn">Edit</a>
-              <a ng-click="deleteProduct(animal.tag_id)" class="waves-effect waves-light btn">Delete</a>
+              <a ng-click="readOne(animal.tag_id)" class="waves-effect waves-light btn">Quick Edit</a>
+              <!-- <a ng-click="deleteProduct(animal.tag_id)" class="waves-effect waves-light btn">Delete</a> -->
             </td>
         </tr>
     </tbody>

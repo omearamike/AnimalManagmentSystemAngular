@@ -6,7 +6,7 @@
     <input name="breed_name" type="text" ng-model="user.breed_name" placeholder="LMX">
     <br>
     Date of Birth:<br>
-    <input name="dob" type="text" ng-model="user.dob" placeholder="2015-12-12">
+    <input name="dob" type="date" class="validate" ng-model="user.dob" placeholder="2015-12-12">
     <br>
     Sex:<br>
     <input name="sex" type="text" ng-model="user.sex" placeholder="bull">
@@ -17,7 +17,6 @@
     <!-- <button ng-click="reset()">RESET</button> -->
     <input type="button" class="btn btn-default" value="submit" ng-click="insertdata()"/><br />
   </form>
-
 
   <p>form = {{ user.tagId }}</p>
   <p> {{user.firstName}}</p>
