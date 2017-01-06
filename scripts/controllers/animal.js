@@ -3,11 +3,11 @@
   * @function: insertdata(), getAll(), counter(), searchFilter(), readOne(tag_id), updateAnimal(), showCreateForm(), clearForm().
   * @author Myk O Meara
   * @required Is called directly from the client display.php
-  * @param $scope: is the scope used to bring data which is with in the displayCtrl Controller scope from client(website)
+  * @param $scope: is the scope used to bring data which is with in the animalCtrl Controller scope from client(website)
   * @param $http: Used to create a http request to server
 */
 
-app.controller('displayCtrl', function($scope, $http) {
+app.controller('animalCtrl', function($scope, $http) {
     $scope.nameFilter = null;
     $scope.animalList = [];
 
@@ -18,6 +18,7 @@ app.controller('displayCtrl', function($scope, $http) {
 
       $scope.getAll = function(){ // Returns all animals from database
           $http.get("functions/Animal/read_animals.php").success(function(response){
+              console.log(response);
               $scope.animalList = response;
             });
         };
@@ -55,7 +56,7 @@ app.controller('displayCtrl', function($scope, $http) {
               $scope.notes= data[0]['notes'];
 
           $('#modal-animal-form').modal('open'); // show modal
-              Materialize.toast('Record: ' + $scope.tag_id + 'retrieved', 2000);
+              Materialize.toast('Record: ' + $scope.tag_id, 2000);
           })
           .error(function(data, status, headers, config){
               Materialize.toast('Unable to retrieve record: ' + $scope.tag_id, 2000);
@@ -73,7 +74,7 @@ app.controller('displayCtrl', function($scope, $http) {
 
                 Materialize.toast(data, 4000); // tell the user product record was updated
 
-                $('#modal-animal-form').modal('close'); // close modal
+                // $('#modal-animal-form').modal('close'); // close modal
 
                 $scope.clearForm(); // clear modal content
 
@@ -82,6 +83,10 @@ app.controller('displayCtrl', function($scope, $http) {
                 Materialize.toast(data, 4000);
                 });
         };
+
+        // $scope.closeForm = function(){
+        //     $('#modal-animal-form').modal('destroy'); // close modal
+        // };
 
         $scope.showCreateForm = function(){
 

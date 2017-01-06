@@ -1,4 +1,4 @@
-<div ng-controller="displayCtrl">
+<div ng-controller='animalCtrl'>
 
   <!-- modal for for creating new product -->
   <div id="modal-animal-form" class="modal editAnimalPopUp">
@@ -31,11 +31,11 @@
               </div>
 
               <div class="input-field col s12">
-                  <a id="btn-create-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createAnimal()"><i class="material-icons left">add</i>Create</a>
+                  <!-- <a id="btn-create-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createAnimal()"><i class="material-icons left"></i>Create</a> -->
 
-                  <a id="btn-update-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateAnimal()"><i class="material-icons left">edit</i>Save Changes</a>
+                  <a id="btn-update-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateAnimal()"><i class="material-icons left"></i>Save Changes</a>
 
-                  <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
+                  <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left"></i>Close</a>
               </div>
           </div>
       </div>

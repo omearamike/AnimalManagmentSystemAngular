@@ -10,7 +10,7 @@ $animal = new Animal($db); // prepare animal object
 
 $data = json_decode(file_get_contents("php://input")); // get tag_id of animal to be edited
 
-$animal->tag_id = $data->tag_id; // set ID property of product to be edited
+// $animal->tag_id = $data->tag_id; // set ID property of product to be edited
 
 // set animal property values
 $animal->tag_id = $data->tag_id;
@@ -20,7 +20,7 @@ $animal->dob = $data->dob;
 $animal->notes = $data->notes;
 
 if($animal->update()){ // update the product
-    echo "Animal was updated.";
+    echo "Animal was updated";
 }
 
 else{ // if unable to update the product, tell the user

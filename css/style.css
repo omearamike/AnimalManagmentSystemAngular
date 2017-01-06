@@ -70,8 +70,46 @@ td {
 .mytooltip:hover .mytooltiptext {
     visibility: visible;
 }
-.test {
-    /*width: 500px;
-    height: 500px;
-    background-color: red;*/
+
+
+
+
+.container_feedlots {
+    margin-top: 20px;
+    display: inline-block;
+    width: 110%;
+}
+
+.recordof_feedlot {
+    width: 45%;
+    height: 20%;
+    background-color: rgba(49, 119, 124, 0.86);
+    padding: 10px;
+    margin: 5px 5px 5px 5px;
+    display: inline-block;
+    float: left;
+}
+
+.btng_feedlot {
+    display: block;
+    width: 50%;
+    float: right;
+    right: 0px;
+    height: 100%;
+}
+
+.btn_weight {
+    right: 0px;
+    float: right;
+}
+
+.btn_addanimal {
+    right: 0px;
+    float: right;
+}
+
+.feedlotstats {
+    width: 50%;
+    display: block;
+    float: left;
 }

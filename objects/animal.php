@@ -3,7 +3,7 @@
 /**
   * @desc This controller will be used to display animal records
   * @function: __construct(), create(), readAll(), createUsingCsv(), readOne(), update().
-  * @param $scope: is the scope used to bring data which is with in the displayCtrl Controller scope from client(website)
+  * @param $scope: is the scope used to bring data which is with in the animalCtrl Controller scope from client(website)
   * @param $http: Used to create a http request to server
 */
 
@@ -140,8 +140,7 @@ class Animal    {
 
     function update(){ // update the product
 
-        $query = "UPDATE animal SET tag_id = :tag_id,
-                  breed_id = (SELECT breed_id FROM breed WHERE breed_name = :breed_name),
+        $query = "UPDATE animal SET breed_id = (SELECT breed_id FROM breed WHERE breed_name = :breed_name),
                   dob = :dob,
                   sex = (SELECT sex_id FROM sex WHERE sex_type = :sex_type),
                   notes = :notes

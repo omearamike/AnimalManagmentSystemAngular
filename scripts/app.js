@@ -20,11 +20,11 @@ app.config(['$routeProvider',
             })
             .when('/create', {
               templateUrl: 'partials/Animal/create.php',
-              controller: 'displayCtrl'})
+              controller: 'animalCtrl'})
             .when('/display',
                 {title: 'Display',
                 templateUrl: 'partials/Animal/display.php',
-                controller: 'displayCtrl'})
+                controller: 'animalCtrl'})
             .when('/managefeedlot',
                 {title: 'Manage Feedlot',
                 templateUrl: 'partials/Feedlot/display.php',

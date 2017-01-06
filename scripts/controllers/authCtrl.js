@@ -3,7 +3,7 @@
   * @function: insertdata(), getAll(), counter(), searchFilter(), readOne(tag_id), updateAnimal(), showCreateForm(), clearForm().
   * @author Jake Rocheleau jakerocheleau@gmail.com
   * @required Is called directly from the client display.php
-  * @param $scope: is the scope used to bring data which is with in the displayCtrl Controller scope from client(website)
+  * @param $scope: is the scope used to bring data which is with in the animalCtrl Controller scope from client(website)
   * @param $http: Used to create a http request to server
 */
 app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
