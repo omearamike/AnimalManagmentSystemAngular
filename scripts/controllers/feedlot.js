@@ -55,3 +55,32 @@ app.controller('feedlotCtrl', function($scope, $http) {
       };
 
 });
+
+
+
+app.controller('viewFeedlotCtrl', function($scope, $routeParams, $http) {
+
+    $scope.feedlotDetails = [];
+
+   $scope.feedlot_id = $routeParams.feedlot_id; // receives feedlot_id param from url
+
+   $scope.test = function(){
+       console.log($scope.feedlot_id);
+   };
+
+   $scope.readOne = function(){
+
+         $http.post('functions/Feedlot/read_feedlotid.php', { // fields in key-value pairs
+                 'feedlot_id' : $scope.feedlot_id, //passes lot_id to the read_feedlotid.php function
+             }
+         ).success(function (data, status, headers, config) {
+             console.log(data);
+             $scope.feedlotDetails = data;
+
+             Materialize.toast(data, 4000); // tell the user new product was created
+
+         });
+     };
+
+
+});

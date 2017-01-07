@@ -60,7 +60,7 @@
     <tbody ng-init="getAll()">
         <tr ng-repeat="animal in animalList | filter:searchFilter">
             <td ng-init="number = counter()">{{number}}</td>
-            <td><a href="/animaldetails/?{{animal.tag_id}}">IE{{ animal.tag_id}}</a></td>
+            <td><a href="#/animal/view/?{{animal.tag_id}}">IE{{ animal.tag_id}}</a></td>
             <td>{{ animal.breed_name }}</td>
             <td>
             <div class="mytooltip">Age: Y{{animal.year}} M{{animal.month}}

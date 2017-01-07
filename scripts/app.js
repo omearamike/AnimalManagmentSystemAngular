@@ -29,6 +29,14 @@ app.config(['$routeProvider',
                 {title: 'Manage Feedlot',
                 templateUrl: 'partials/Feedlot/display.php',
                 controller: 'feedlotCtrl'})
+            .when('/animal/view',
+                {title: 'Manage Feedlot',
+                templateUrl: 'partials/Animal/view.php',
+                controller: 'viewAnimalCtrl'})
+            .when('/feedlot/view/:feedlot_id',
+                {title: 'View Feedlot',
+                templateUrl: 'partials/Feedlot/view.php',
+                controller: 'viewFeedlotCtrl'})
             .when('/dashboard', {
                 title: 'Dashboard',
                 templateUrl: 'partials/Authentication/dashboard.html',
@@ -39,10 +47,10 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/Authentication/login.html',
                 controller: 'authCtrl',
                 role: '0'
-            })
-            .otherwise({
-                redirectTo: '/login'
             });
+            // .otherwise({
+            //     redirectTo: '/login'
+            // });
 
   }])
     .run(function ($rootScope, $location, Data) {

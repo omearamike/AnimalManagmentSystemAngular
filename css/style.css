@@ -9,7 +9,7 @@
 }
 
 .mainBody {
-  padding: 4% 10% 0 10%;
+  padding: 4% 5% 0 5%;
 }
 
 td {
@@ -98,12 +98,7 @@ td {
     height: 100%;
 }
 
-.btn_weight {
-    right: 0px;
-    float: right;
-}
-
-.btn_addanimal {
+.fl_btn {
     right: 0px;
     float: right;
 }
@@ -112,4 +107,19 @@ td {
     width: 50%;
     display: block;
     float: left;
+}
+
+.fl_details {
+    /*background-color: rgba(228, 228, 228, 0.53);*/
+    padding: 20px;
+    border: 1px solid hsla(0, 0%, 81%, 0.52);
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.feedlotDetails {
+    /*background-color: rgba(228, 228, 228, 0.80);*/
+    padding: 5px;
+    border: 1px solid hsla(0, 0%, 81%, 0.52);
+    border-radius: 12px;
 }
