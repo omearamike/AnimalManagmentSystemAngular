@@ -43,11 +43,11 @@
 
         function readOne(){ // used when filling up the update product form
 
-             $query = "SELECT lot_id, name_feedlot FROM feedlot WHERE lot_id = 13";
+             $query = "SELECT lot_id, name_feedlot FROM feedlot WHERE lot_id = :lot_id";
 
             $stmt = $this->conn->prepare( $query );  // prepare query statement
-
-            // $stmt->bindParam(":tag_id", $this->tag_id, PDO::PARAM_INT); // bind tag_id of product to be updated
+            $varible = $this->feedlot_id;
+            $stmt->bindParam(":lot_id", $varible, PDO::PARAM_STR); // bind tag_id of product to be updated
 
             $stmt->execute(); // execute query
 
@@ -62,6 +62,28 @@
             // $this->dob = date("Y-m-d", strtotime($tmpDob));
             // $this->notes = $row['notes'];
         }
+
+        function moveAnimal(){
+            $query = "INSERT INTO movement (movementDate, lot_id, tag_id, current)
+            VALUES ('2015-01-01', (SELECT lot_id FROM feedlot WHERE lot_id = :lot_id), (SELECT tag_id FROM animal WHERE tag_id = :tag_id), '1')";
+            // $query = "INSERT INTO movement (movementDate, lot_id, tag_id) VALUES ('2015-01-01', (SELECT lot_id FROM feedlot WHERE lot_id = '36'), (SELECT tag_id FROM animal WHERE tag_id = '151320160325'))";
+
+            $stmt = $this->conn->prepare($query); // prepare query statement
+
+            $stmt->bindParam(":lot_id", $this->lot_id, PDO::PARAM_INT);
+            $stmt->bindParam(":tag_id", $this->tag_id, PDO::PARAM_INT);
+
+            if($stmt->execute()){ // execute the query
+                return true;
+            }else{
+                return false;
+            }
+
+
+        }
+
+
+
 
 
 

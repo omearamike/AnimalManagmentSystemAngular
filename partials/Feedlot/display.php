@@ -22,7 +22,7 @@
 
     <a ng-click="showCreateForm()" class="waves-effect waves-light btn">Add New Feedlot</a>
 
-    <div ng-init="getAll()">
+    <div ng-init="getAllFeedlot()">
         <div class="container_feedlots">
             <div ng-repeat="feedlot in feedlotList">
                 <div class="recordof_feedlot">

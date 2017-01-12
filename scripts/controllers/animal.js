@@ -16,10 +16,11 @@ app.controller('animalCtrl', function($scope, $http) {
           $http.post("functions/Animal/create_animal.php", {'tagId':$scope.user.tagId, 'breed_name':$scope.user.breed_name, 'dob':$scope.user.dob, 'sex':$scope.user.sex, 'notes':$scope.user.notes});
         };
 
-      $scope.getAll = function(){ // Returns all animals from database
+      $scope.getAllAnimals = function(){ // Returns all animals from database
           $http.get("functions/Animal/read_animals.php").success(function(response){
-              console.log(response);
+            //   console.log(response);
               $scope.animalList = response;
+              
             });
         };
 
@@ -78,7 +79,7 @@ app.controller('animalCtrl', function($scope, $http) {
 
                 $scope.clearForm(); // clear modal content
 
-                $scope.getAll(); // refresh the product list
+                $scope.getAllAnimals(); // refresh the product list
             }).error(function(data, status, headers, config){
                 Materialize.toast(data, 4000);
                 });
@@ -121,8 +122,30 @@ app.controller('animalCtrl', function($scope, $http) {
                   $('#modal-product-form').modal('close'); // close modal
 
                   $scope.clearForm(); // clear modal content
-                  $scope.getAll(); // refresh the list
+                  $scope.getAllAnimals(); // refresh the list
               });
           };
+
+        $scope.displayAllAnimals = function(){
+            $('#modal-allanimals-title').text("Create New Product"); // change modal title
+            $('#modal-allanimals').hide(); // hide update product button
+            $('#modal-allanimals').show(); // show create product button
+        };
+
+        $scope.getFeedlotAnimals = function(){
+            $http.post('functions/Animal/display_feedlotAnimals.php', {
+                // console.log(response);
+                'lot_id' : $scope.lot_id
+
+            }).success(function (data, status, headers, config){
+                // console.log(data);
+                Materialize.toast(data, 4000); // tell the user product record was updated
+
+
+            }).error(function(data, status, headers, config){
+                Materialize.toast(data, 4000);
+                });
+
+        };
 
 });

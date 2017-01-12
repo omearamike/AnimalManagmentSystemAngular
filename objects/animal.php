@@ -160,5 +160,6 @@ class Animal    {
             return false;
         }
         }
+
     };
 ?>

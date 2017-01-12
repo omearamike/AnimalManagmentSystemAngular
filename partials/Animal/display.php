@@ -57,7 +57,7 @@
         </tr>
     </thead>
 
-    <tbody ng-init="getAll()">
+    <tbody ng-init="getAllAnimals()">
         <tr ng-repeat="animal in animalList | filter:searchFilter">
             <td ng-init="number = counter()">{{number}}</td>
             <td><a href="#/animal/view/?{{animal.tag_id}}">IE{{ animal.tag_id}}</a></td>

@@ -4,14 +4,14 @@ app.controller('feedlotCtrl', function($scope, $http) {
     $scope.nameFilter = null;
     $scope.feedlotList = [];
 
-    $scope.getAll = function(){ // Returns all animals from database
+    $scope.getAllFeedlot = function(){ // Returns all animals from database
         $http.get("functions/Feedlot/read_feedlot.php").success(function(response){
-            console.log(response);
+            // console.log(response);
             $scope.feedlotList = response;
           });
       };
 
-    $scope.showCreateForm = function(){
+    $scope.showCreateForm = function(){ //shows form for creating a new feedlot
 
         $scope.clearForm(); // clear form
 
@@ -21,9 +21,6 @@ app.controller('feedlotCtrl', function($scope, $http) {
 
     };
 
-
-
-
     $scope.clearForm = function(){ // clear variable / form values
         //   $scope.tag_id = "";
         //   $scope.breed_name = "";
@@ -32,7 +29,7 @@ app.controller('feedlotCtrl', function($scope, $http) {
         //   $scope.notes = "";
     };
 
-    $scope.createFeedlot = function(){
+    $scope.createFeedlot = function(){ // Creates a new feedlot
 
           $http.post('functions/Feedlot/create_feedlot.php', { // fields in key-value pairs
                   'name' : $scope.name,
@@ -49,7 +46,7 @@ app.controller('feedlotCtrl', function($scope, $http) {
           });
       };
 
-      $scope.closeForm = function(){
+      $scope.closeForm = function(){ // closes form
           $('#modal-feedlot-form').modal('destroy'); // close modal
           $scope.clearForm(); // clear modal content
       };
@@ -68,18 +65,34 @@ app.controller('viewFeedlotCtrl', function($scope, $routeParams, $http) {
        console.log($scope.feedlot_id);
    };
 
-   $scope.readOne = function(){
+   $scope.readOne = function(){ //displays all details of single feedlot
 
          $http.post('functions/Feedlot/read_feedlotid.php', { // fields in key-value pairs
                  'feedlot_id' : $scope.feedlot_id, //passes lot_id to the read_feedlotid.php function
              }
          ).success(function (data, status, headers, config) {
-             console.log(data);
+            //  console.log(data);
              $scope.feedlotDetails = data;
 
              Materialize.toast(data, 4000); // tell the user new product was created
 
          });
+     };
+
+     $scope.moveAnimal = function(lot_id, tag_id){
+                    //   console.log(tag_id);
+         $http.post('functions/Feedlot/move_Animal.php', { // fields in key-value pairs
+                 'lot_id' : lot_id, //passes lot_id to the read_feedlotid.php function
+                 'tag_id' : tag_id //passes lot_id to the read_feedlotid.php function
+             }
+            //  console.log(lot_id);
+
+         ).success(function (data, status, headers, config) {
+
+             Materialize.toast(data, 4000); // tell the user new product was created
+
+         });
+
      };
 
 
