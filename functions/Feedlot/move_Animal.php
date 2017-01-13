@@ -21,7 +21,5 @@ if($feedlot->moveAnimal()){ // create the animal
 
 else{ // if unable to create the animal, tell the user
     echo "Unable to move Animal.";
-    // echo $data;
-    // echo $data->lot_id;
 }
 ?>

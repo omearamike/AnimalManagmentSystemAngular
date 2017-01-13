@@ -41,28 +41,6 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
         }
 
-        function readOne(){ // used when filling up the update product form
-
-             $query = "SELECT lot_id, name_feedlot FROM feedlot WHERE lot_id = :lot_id";
-
-            $stmt = $this->conn->prepare( $query );  // prepare query statement
-            $varible = $this->feedlot_id;
-            $stmt->bindParam(":lot_id", $varible, PDO::PARAM_STR); // bind tag_id of product to be updated
-
-            $stmt->execute(); // execute query
-
-            $row = $stmt->fetch(PDO::FETCH_ASSOC); // get retrieved row
-
-            // set values to object properties
-            $this->lot_id = $row['lot_id'];
-            $this->feedlot_name = $row['name_feedlot'];
-            // $this->sex_type = $row['sex_type'];
-            // $tmpDob = $row['dob'];
-            // $tmpDob = str_replace("/","-", $tmpDob);
-            // $this->dob = date("Y-m-d", strtotime($tmpDob));
-            // $this->notes = $row['notes'];
-        }
-
         function moveAnimal(){
             $query = "INSERT INTO movement (movementDate, lot_id, tag_id, current)
             VALUES ('2015-01-01', (SELECT lot_id FROM feedlot WHERE lot_id = :lot_id), (SELECT tag_id FROM animal WHERE tag_id = :tag_id), '1')";
@@ -78,8 +56,38 @@
             }else{
                 return false;
             }
+        }
 
+        function getSingleFeedlotDetails(){ // used when filling up the update product form
 
+             $query = "SELECT lot_id, name_feedlot FROM feedlot WHERE lot_id = :lot_id";
+
+            $stmt = $this->conn->prepare( $query );  // prepare query statement
+            $varible = $this->feedlot_id;
+            $stmt->bindParam(":lot_id", $varible, PDO::PARAM_STR); // bind tag_id of product to be updated
+
+            $stmt->execute(); // execute query
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC); // get retrieved row
+
+            // set values to object properties
+            $this->lot_id = $row['lot_id'];
+            $this->feedlot_name = $row['name_feedlot'];
+        }
+
+        function getSingleFeedlotAnimals(){ // read all animals in feedlot
+
+            // $query = "SELECT tag_id FROM movement WHERE lot_id = :lot_id";
+            $query = "SELECT movement.tag_id AS tag_id, max(movement.GMT_Added) AS time from movement where lot_id = :lot_id group by movement.tag_id";
+
+            $stmt = $this->conn->prepare($query); // prepare query statement
+
+            $varible = $this->feedlot_id;
+            $stmt->bindParam(":lot_id", $varible, PDO::PARAM_STR); // bind tag_id of product to be updated
+
+            $stmt->execute(); // execute query
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
         }
 
 

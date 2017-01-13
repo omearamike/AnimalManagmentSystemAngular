@@ -20,7 +20,7 @@ if (!empty($data->feedlot_id)) {
 
 
 // read the details of product to be edited
-$feedlot->readOne(); // Run the readOne() function in objects/animal.php
+$feedlot->getSingleFeedlotDetails(); // Run the readOne() function in objects/animal.php
 
 $feedlot_arr[] = array( // create array
     "feedlot_id" =>  $feedlot->feedlot_id,
