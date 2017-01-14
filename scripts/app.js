@@ -19,23 +19,23 @@ app.config(['$routeProvider',
                 controller: 'authCtrl'
             })
             .when('/create', {
-              templateUrl: 'partials/Animal/create.php',
+              templateUrl: 'components/animal/createanimalView.php',
               controller: 'animalCtrl'})
             .when('/display',
                 {title: 'Display',
-                templateUrl: 'partials/Animal/display.php',
+                templateUrl: 'components/animal/allanimalsView.php',
                 controller: 'animalCtrl'})
             .when('/managefeedlot',
                 {title: 'Manage Feedlot',
-                templateUrl: 'partials/Feedlot/display.php',
+                templateUrl: 'components/feedlot/allfeedlotsView.php',
                 controller: 'feedlotCtrl'})
             .when('/animal/view',
                 {title: 'Manage Feedlot',
-                templateUrl: 'partials/Animal/view.php',
+                templateUrl: 'components/animal/singleanimalView.php',
                 controller: 'viewAnimalCtrl'})
             .when('/feedlot/view/:feedlot_id',
                 {title: 'View Feedlot',
-                templateUrl: 'partials/Feedlot/view.php',
+                templateUrl: 'components/feedlot/feedlotprofileView.php',
                 controller: 'viewFeedlotCtrl'})
             .when('/dashboard', {
                 title: 'Dashboard',

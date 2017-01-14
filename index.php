@@ -12,11 +12,11 @@
           <script type="text/javascript" src="scripts/vendors/displayjq.js"></script>
           <script type="text/javascript" src="scripts/vendors/toaster.js"></script>
 
-          <script type="text/javascript" src="scripts/controllers/animal.js"></script>
-          <script type="text/javascript" src="scripts/controllers/feedlot.js"></script>
+          <script type="text/javascript" src="components/animal/animalController.js"></script>
+          <script type="text/javascript" src="components/feedlot/feedlotController.js"></script>
           <script type="text/javascript" src="scripts/factory/data.js"></script>
           <script type="text/javascript" src="scripts/directives/directives.js"></script>
-          <script type="text/javascript" src="scripts/controllers/authCtrl.js"></script>
+          <!-- <script type="text/javascript" src="scripts/controllers/authCtrl.js"></script> -->
 
           <!-- Bootstrap -->
           <link href="css/bootstrap.min.css" rel="stylesheet">

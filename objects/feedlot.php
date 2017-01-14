@@ -41,7 +41,26 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
         }
 
+        function removeAnimal($tag_id) {
+
+            $remove = "UPDATE movement SET current='0' WHERE tag_id = :tag_id";
+
+            $stmt = $this->conn->prepare($remove); // prepare query statement
+
+
+            $stmt->bindParam(":tag_id", $tag_id, PDO::PARAM_INT);
+
+            if($stmt->execute()){ // execute the query
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         function moveAnimal(){
+            $tag_id = $this->tag_id;
+            $this->removeAnimal($tag_id);
+
             $query = "INSERT INTO movement (movementDate, lot_id, tag_id, current)
             VALUES ('2015-01-01', (SELECT lot_id FROM feedlot WHERE lot_id = :lot_id), (SELECT tag_id FROM animal WHERE tag_id = :tag_id), '1')";
             // $query = "INSERT INTO movement (movementDate, lot_id, tag_id) VALUES ('2015-01-01', (SELECT lot_id FROM feedlot WHERE lot_id = '36'), (SELECT tag_id FROM animal WHERE tag_id = '151320160325'))";
@@ -57,6 +76,8 @@
                 return false;
             }
         }
+
+
 
         function getSingleFeedlotDetails(){ // used when filling up the update product form
 
@@ -78,7 +99,8 @@
         function getSingleFeedlotAnimals(){ // read all animals in feedlot
 
             // $query = "SELECT tag_id FROM movement WHERE lot_id = :lot_id";
-            $query = "SELECT movement.tag_id AS tag_id, max(movement.GMT_Added) AS time from movement where lot_id = :lot_id group by movement.tag_id";
+            $query = "SELECT m.tag_id AS tag_id, max(m.GMT_Added) AS time, a.dob as dob  FROM movement m JOIN animal a on m.tag_id = a.tag_id where lot_id = :lot_id AND current = 1 group by m.tag_id";
+            // $query = "SELECT m.tag_id AS tag_id, max(m.GMT_Added) AS time, a.dob as dob  FROM movement m where lot_id = :lot_id AND current = 1 group by m.tag_id";
 
             $stmt = $this->conn->prepare($query); // prepare query statement
 
@@ -87,7 +109,13 @@
 
             $stmt->execute(); // execute query
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
+            // return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC); // get retrieved row
+
+            // set values to object properties
+            $this->tag_id = $row['tag_id'];
+            // $this->feedlot_name = $row['name_feedlot'];
         }
 
 
