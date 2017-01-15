@@ -76,14 +76,14 @@
                         <tbody ng-controller='viewFeedlotCtrl' ng-init="getSingleFeedlotAnimals()">
                             <tr ng-repeat="animal in feedlotAnimals | filter:searchFilter">
                                 <td ng-init="number = counter()">{{number}}</td>
-                                <td><a href="#/animal/view/?{{animal.tag_id}}">IE{{ animal.feedlot.tag_id}}</a></td>
+                                <td><a href="#/animal/view/?{{animal.tag_id}}">IE{{ animal.tag_id}}</a></td>
                                 <td>{{ animal.breed_name }}</td>
                                 <td>
                                     <div class="mytooltip">Age: Y{{animal.year}} M{{animal.month}}
                                         <span class="mytooltiptext"> <div class="test">{{animal.dob}}</div> </span>
                                     </div>
                                 </td>
-                                <td>{{ animal.sex_type }}</td>
+                                <td>{{ animal.tag_id }}</td>
                                 <td>{{ animal.notes }}</td>
                                 <td> <a ng-click="removeAnimal(animal.tag_id)" class="waves-effect waves-light btn">Remove Animal</a> </td>
                             </tr>

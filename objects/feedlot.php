@@ -109,12 +109,12 @@
 
             $stmt->execute(); // execute query
 
-            // return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all values
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC); // get retrieved row
-
-            // set values to object properties
-            $this->tag_id = $row['tag_id'];
+            // $row = $stmt->fetch(PDO::FETCH_ASSOC); // get retrieved row
+            //
+            // // set values to object properties
+            // $this->tag_id = $row['tag_id'];
             // $this->feedlot_name = $row['name_feedlot'];
         }
 
