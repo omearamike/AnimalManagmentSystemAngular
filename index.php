@@ -14,6 +14,7 @@
 
           <script type="text/javascript" src="components/animal/animalController.js"></script>
           <script type="text/javascript" src="components/feedlot/feedlotController.js"></script>
+          <script type="text/javascript" src="components/feedlot/feedlotService.js"></script>
           <script type="text/javascript" src="scripts/factory/data.js"></script>
           <script type="text/javascript" src="scripts/directives/directives.js"></script>
           <!-- <script type="text/javascript" src="scripts/controllers/authCtrl.js"></script> -->
@@ -30,8 +31,8 @@
 
     <?php include("include/header.php"); ?>
 
-        <body class="mainBody" ng-app="myApp">
-            <div data-ng-view="" class="slide-animation"></div>
+        <body class="mainBody" ng-app="app">
+            <div data-ng-view=""></div>
         </body>
         <!-- <toaster-container toaster-options="{'time-out': 3000}"></toaster-container> -->
 

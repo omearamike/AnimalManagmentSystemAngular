@@ -13,7 +13,7 @@
 
                 <div class="input-field col s12">
                     <a id="#btn-create-feedlot" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createFeedlot()"><i class="material-icons left"></i>Create</a>
-                    <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left"></i>Close</a>
+                    <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em" ng-click="closeCreateForm()"><i class="material-icons left"></i>Close</a>
                 </div>
             </div>
         </div>

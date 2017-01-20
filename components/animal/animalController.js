@@ -1,17 +1,7 @@
-/**
- * @desc This controller will be used to display animal records
- * @function: insertdata(), getAll(), counter(), searchFilter(), readOne(tag_id), updateAnimal(), showCreateForm(), clearForm().
- * @author Myk O Meara
- * @required Is called directly from the client display.php
- * @param $scope: is the scope used to bring data which is with in the animalCtrl Controller scope from client(website)
- * @param $http: Used to create a http request to server
- */
-
 app.controller('animalCtrl', function ($scope, $http) {
     $scope.nameFilter = null;
     $scope.animalList = [];
-
-    $scope.insertdata = function () { // Inserts data to the database based on Array submitted from user input
+    $scope.insertdata = function () {
         console.log($scope);
         $http.post("functions/Animal/createAnimal.php", {
             'tagId': $scope.user.tagId,
@@ -21,56 +11,55 @@ app.controller('animalCtrl', function ($scope, $http) {
             'notes': $scope.user.notes
         });
     };
-
-    $scope.getAllAnimals = function () { // Returns all animals from database
+    $scope.getAllAnimals = function () {
         $http.get('functions/Animal/getAllAnimals.php').success(function (response) {
-            //   console.log(response);
             $scope.animalList = response;
-
         });
     };
 
-    $scope.totalCount = 1; // Counter used for creating an tempepory numbering system on getAll function
+    $scope.totalCount = 1;
     $scope.counter = function () {
         return $scope.totalCount++;
     };
-
-
-    $scope.searchFilter = function (animal) { // Defines what values are searched with the searchFilter search bar
+    $scope.searchFilter = function (animal) {
         var re = new RegExp($scope.nameFilter, 'i');
         return !$scope.nameFilter || re.test(animal.tag_id);
     };
 
-
-    $scope.readOne = function (tag_id) { // retrieve record to fill out the form
-
-        $('#modal-animal-title').text("Edit Animal"); // change modal title
-        $('#btn-update-animal').show(); // show udpate product button
-        $('#btn-create-animal').hide(); // show create product button
-
-        $http.post("functions/Animal/getSingleAnimal.php", { // post id of product to be edited
-
-                'tag_id': tag_id
-
-            })
+    // $scope.showCreateForm = function () {
+    //     $scope.clearForm();
+    //     $('#modal-feedlot-title').text("Create New Product");
+    //     $('#modal-feedlot-form').hide();
+    //     $('#modal-feedlot-form').show();
+    // };
+    $scope.readOne = function (tag_id) {
+        $('#modal-animal-title').text("Edit Animal");
+        // $('#modal-animal-form').hide();
+        $('#modal-animal-form').show();
+        $http.post("functions/Animal/getSingleAnimal.php", {
+            'tag_id': tag_id
+        })
             .success(function (data, status, headers, config) {
-
-                // put the values in form
-                $scope.tag_id = data[0]['tag_id'];
-                $scope.breed_name = data[0]['breed_name'];
-                $scope.sex_type = data[0]['sex_type'];
-                $scope.dob = data[0]['dob'];
-                $scope.notes = data[0]['notes'];
-
-                $('#modal-animal-form').modal('open'); // show modal
-                Materialize.toast('Record: ' + $scope.tag_id, 2000);
-            })
+            $scope.tag_id = data[0]['tag_id'];
+            $scope.breed_name = data[0]['breed_name'];
+            $scope.sex_type = data[0]['sex_type'];
+            $scope.dob = data[0]['dob'];
+            $scope.notes = data[0]['notes'];
+            $('#modal-animal-form').modal('open');
+            Materialize.toast('Record: ' + $scope.tag_id, 2000);
+        })
             .error(function (data, status, headers, config) {
-                Materialize.toast('Unable to retrieve record: ' + $scope.tag_id, 2000);
-            });
+            Materialize.toast('Unable to retrieve record: ' + $scope.tag_id, 2000);
+        });
     };
 
-    $scope.updateAnimal = function () { // update product record / save changes
+
+    $scope.closeForm = function () {
+        $scope.clearForm();
+        $('#modal-animal-form').hide();
+    };
+
+    $scope.updateAnimal = function () {
         $http.post('functions/Animal/updateSingleAnimal.php', {
             'tag_id': $scope.tag_id,
             'breed_name': $scope.breed_name,
@@ -78,79 +67,64 @@ app.controller('animalCtrl', function ($scope, $http) {
             'dob': $scope.dob,
             'notes': $scope.notes
         }).success(function (data, status, headers, config) {
-
-            Materialize.toast(data, 4000); // tell the user product record was updated
-
-            // $('#modal-animal-form').modal('close'); // close modal
-
-            $scope.clearForm(); // clear modal content
-
-            $scope.getAllAnimals(); // refresh the product list
+            Materialize.toast(data, 4000);
+            $scope.clearForm();
+            $scope.closeForm();
+            $scope.getAllAnimals();
         }).error(function (data, status, headers, config) {
             Materialize.toast(data, 4000);
         });
     };
-
-    // $scope.closeForm = function(){
-    //     $('#modal-animal-form').modal('destroy'); // close modal
-    // };
-
     $scope.showCreateForm = function () {
-
-        $scope.clearForm(); // clear form
-
-        $('#modal-product-title').text("Create New Product"); // change modal title
-        $('#btn-update-product').hide(); // hide update product button
-        $('#btn-create-product').show(); // show create product button
-
+        $scope.clearForm();
+        $('#modal-product-title').text("Create New Product");
+        $('#btn-update-product').hide();
+        $('#btn-create-product').show();
     };
-
-    $scope.clearForm = function () { // clear variable / form values
+    $scope.clearForm = function () {
         $scope.tag_id = "";
         $scope.breed_name = "";
         $scope.sex_type = "";
         $scope.dob = "";
         $scope.notes = "";
     };
-
     $scope.createProduct = function () {
-
-        $http.post('create_product.php', { // fields in key-value pairs
+        $http.post('create_product.php', {
             'name': $scope.name,
             'description': $scope.description,
             'price': $scope.price
         }).success(function (data, status, headers, config) {
             console.log(data);
-
-            Materialize.toast(data, 4000); // tell the user new product was created
-
-            $('#modal-product-form').modal('close'); // close modal
-
-            $scope.clearForm(); // clear modal content
-            $scope.getAllAnimals(); // refresh the list
+            Materialize.toast(data, 4000);
+            $('#modal-product-form').modal('close');
+            $scope.clearForm();
+            $scope.getAllAnimals();
         });
     };
-
     $scope.displayAllAnimals = function () {
-        $('#modal-allanimals-title').text("Create New Product"); // change modal title
-        $('#modal-allanimals').hide(); // hide update product button
-        $('#modal-allanimals').show(); // show create product button
+        $('#modal-allanimals-title').text("Create New Product");
+        $('#modal-allanimals').hide();
+        $('#modal-allanimals').show();
     };
-
     $scope.getFeedlotAnimals = function () {
         $http.post('functions/Animal/getAllFeedlotAnimals.php', {
-            // console.log(response);
             'lot_id': $scope.lot_id
-
         }).success(function (data, status, headers, config) {
-            // console.log(data);
-            Materialize.toast(data, 4000); // tell the user product record was updated
-
-
+            Materialize.toast(data, 4000);
         }).error(function (data, status, headers, config) {
             Materialize.toast(data, 4000);
         });
-
     };
 
+
+    $scope.addAnimalWeight = function () {
+        $http.post('functions/Animal/addAnimalWeight.php', {
+            'tag_id': $scope.tag_id
+        }).success(function (data, status, headers, config){
+            Materialize.toast(data, 4000);
+        }).error(function (data, status, headers, config) {
+            Materialize.toast(data, 4000);
+        });
+    };
+    
 });

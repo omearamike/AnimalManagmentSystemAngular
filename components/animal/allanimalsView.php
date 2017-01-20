@@ -35,7 +35,7 @@
 
                   <a id="btn-update-animal" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateAnimal()"><i class="material-icons left"></i>Save Changes</a>
 
-                  <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left"></i>Close</a>
+                  <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em" ng-click="closeForm()"><i class="material-icons left"></i>Close</a>
               </div>
           </div>
       </div>
@@ -58,7 +58,7 @@
     </thead>
 
     <tbody ng-init="getAllAnimals()">
-        <tr ng-repeat="animal in animalList | filter:searchFilter">
+        <tr ng-repeat="animal in animalList | filter:searchFilter | limitTo:3">
             <td ng-init="number = counter()">{{number}}</td>
             <td><a href="#/animal/view/?{{animal.tag_id}}">IE{{ animal.tag_id}}</a></td>
             <td>{{ animal.breed_name }}</td>

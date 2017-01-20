@@ -12,23 +12,31 @@ app.controller('feedlotCtrl', function ($scope, $http) {
         $('#modal-feedlot-form').hide();
         $('#modal-feedlot-form').show();
     };
+
+    $scope.closeCreateForm = function () {
+
+        $scope.clearForm();
+        $('#modal-feedlot-form').hide();
+    };
+
+
     $scope.clearForm = function () {
     };
+
     $scope.createFeedlot = function () {
         $http.post('functions/Feedlot/createFeedlot.php', {
             'name': $scope.name,
         }).success(function (data, status, headers, config) {
             Materialize.toast(data, 4000);
-            $('#modal-feedlot-form').modal('close');
-            $scope.clearForm();
+            // $('#modal-feedlot-form').modal('close');
+            // $scope.closeForm();
+            $scope.closeCreateForm();
             $scope.getAllFeedlot();
         });
     };
-    $scope.closeForm = function () {
-        $('#modal-feedlot-form').modal('destroy');
-        $scope.clearForm();
-    };
+
 });
+
 app.controller('viewFeedlotCtrl', function ($scope, $routeParams, $http) {
     $scope.feedlotDetails = [];
     $scope.feedlot_id = $routeParams.feedlot_id;
@@ -52,6 +60,7 @@ app.controller('viewFeedlotCtrl', function ($scope, $routeParams, $http) {
         });
     };
     $scope.moveAnimalFeedlot = function (lot_id, tag_id) {
+        $scope.getSingleFeedlotAnimals();
         $http.post('functions/Feedlot/moveAnimalFeedlot.php', {
             'lot_id': lot_id,
             'tag_id': tag_id
@@ -60,7 +69,27 @@ app.controller('viewFeedlotCtrl', function ($scope, $routeParams, $http) {
             $scope.getSingleFeedlotAnimals();
         });
     };
+
+    $scope.closeForm = function () {
+        $('#modal-allanimals').hide();
+        $scope.getSingleFeedlotAnimals();
+
+        // $scope.clearForm();
+    };
+
     $scope.removeAnimal = function (tag_id) {
+
+        $http.post('functions/Feedlot/removeAnimal.php', {
+            'tag_id': tag_id
+        }).success(function (data, status, headers, config) {
+            Materialize.toast(data, 200);
+
+            $scope.getSingleFeedlotAnimals();
+        });
+    };
+
+    $scope.removeAnimal = function (tag_id) {
+        window.alert("I am an alert box!");
         $http.post('functions/Feedlot/removeAnimal.php', {
             'tag_id': tag_id
         }).success(function (data, status, headers, config) {
@@ -68,4 +97,5 @@ app.controller('viewFeedlotCtrl', function ($scope, $routeParams, $http) {
             $scope.getSingleFeedlotAnimals();
         });
     };
+
 });

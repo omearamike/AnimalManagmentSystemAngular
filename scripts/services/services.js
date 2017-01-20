@@ -1,4 +1,4 @@
-angular.module('myApp.services', [])
+angular.module('.services', [])
   .factory('ergastAPIservice', function($http) {
 
     var ergastAPI = {};

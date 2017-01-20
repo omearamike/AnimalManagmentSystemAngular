@@ -1,4 +1,11 @@
 
+<div id="simple" ng-controller="MyController">
+  <p>Let's try this simple notify service, injected into the controller...</p>
+  <input ng-init="message='test'" ng-model="message" >
+  <button ng-click="callNotify(message);">NOTIFY</button>
+  <p>(you have to click 3 times to see an alert)</p>
+</div>
+
 <div ng-controller='viewFeedlotCtrl' ng-init="getSingleFeedlotDetails()">
     <div ng-repeat="attribute in feedlotDetails">
         <div class="feedlotContainer fl_details">
@@ -21,6 +28,7 @@
         <!-- modal for creating a new feedlot -->
         <div id="modal-allanimals" class="modal editAnimalPopUp">
             <div class="modal-content">
+                <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em" ng-click="closeForm()"><i class="material-icons left"></i>Close</a>
                 <!-- table that shows product record list -->
                 <table class="bordered">
                     <thead>
@@ -58,7 +66,7 @@
 
     <div class="fl_details">
             <a ng-controller='animalCtrl' ng-click="displayAllAnimals()" class="waves-effect waves-light btn margin-bottom-1em fl_btn"><i class="material-icons left"></i>Add Animals</a>
-            <a id="#btn-create-feedlot" class="waves-effect waves-light btn margin-bottom-1em fl_btn" ng-click="addWeight()"><i class="material-icons left"></i>Add Weight</a>
+            <a id="#btn-add-animal-weight" class="waves-effect waves-light btn margin-bottom-1em fl_btn" ng-click="editAnimals()"><i class="material-icons left"></i>Add Weight</a>
 
                     <!-- table that shows product record list -->
                     <table class="bordered">
