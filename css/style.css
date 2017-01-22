@@ -122,3 +122,38 @@ td {
     border: 1px solid hsla(0, 0%, 81%, 0.52);
     border-radius: 12px;
 }
+
+.vertical-navbox {
+        background-color: #292929;
+        display: table-caption;
+        position: fixed;
+        padding-bottom: 100%;
+}
+
+.vertical-navbox li {
+    border-bottom: #3e3e3e solid 2px;
+    color: white;
+}
+
+
+.nav-tabs>li {
+    float: inherit;
+    /*border: 0px 0px 2px 0px white solid;*/
+    margin-bottom: -1px;
+}
+
+.nav-tabs>li a{
+    border-radius: 0;
+}
+
+.menuitems {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.menuitems .fa {
+    color: lavender;
+}
+
+.menuitems .nav-tabs {
+    border-bottom: 0px; 
+}

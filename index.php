@@ -11,15 +11,15 @@
           <script type="text/javascript" src="scripts/vendors/jquery.js"></script>
           <script type="text/javascript" src="scripts/vendors/displayjq.js"></script>
           <script type="text/javascript" src="scripts/vendors/toaster.js"></script>
+          <script type="text/javascript" src="directives/widget.Directive.js"></script>
+          <script type="text/javascript" src="directives/draggable.Directive.js"></script>
+          <script type="text/javascript" src="directives/tabs.Directive.js"></script>
+          <script type="text/javascript" src="services/feedlot.Factory.js"></script>
 
-          <script type="text/javascript" src="components/animal/animalController.js"></script>
-          <script type="text/javascript" src="components/feedlot/feedlotController.js"></script>
-          <script type="text/javascript" src="components/feedlot/feedlotService.js"></script>
-          <script type="text/javascript" src="scripts/factory/data.js"></script>
-          <script type="text/javascript" src="scripts/directives/directives.js"></script>
-          <!-- <script type="text/javascript" src="scripts/controllers/authCtrl.js"></script> -->
 
+          <script type="text/javascript" src="features/displayfeedlot/displayfeedlot.Controller.js"></script>
           <!-- Bootstrap -->
+          <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
           <link href="css/bootstrap.min.css" rel="stylesheet">
           <link href="css/custom.css" rel="stylesheet">
           <link href="css/toaster.css" rel="stylesheet">
@@ -28,12 +28,13 @@
           <link rel="stylesheet" href="css/style.css">
 </head>
 
-
+    <body>
     <?php include("include/header.php"); ?>
-
-        <body class="mainBody" ng-app="app">
+    <div class="dashboard">
+        <div class="mainBody" ng-app="myapp">
             <div data-ng-view=""></div>
-        </body>
+        </div>
+    </div>
         <!-- <toaster-container toaster-options="{'time-out': 3000}"></toaster-container> -->
-
+    </body>
     <?php include("include/footer.php"); ?>
