@@ -29,7 +29,9 @@
 </head>
 
     <body>
-    <?php include("include/header.php"); ?>
+    <div class="side-menu">
+        <?php include("include/header.php"); ?>
+    </div>
     <div class="dashboard">
         <div class="mainBody" ng-app="myapp">
             <div data-ng-view=""></div>

@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+body {
+    background-color: #f0f0f0;
+}
+
 .margin-bottom-1em {
     margin-bottom: 1em;
 }
@@ -82,11 +86,14 @@ td {
 .recordof_feedlot {
     width: 45%;
     height: 20%;
-    background-color: rgba(49, 119, 124, 0.86);
+    background-color: #f8f8f8;
     padding: 10px;
     margin: 5px 5px 5px 5px;
     display: inline-block;
     float: left;
+    border-radius: 5px;
+    /*box-shadow: 3px black;*/
+    border: 2px solid #dcdcdd;
 }
 
 .btng_feedlot {
@@ -100,6 +107,15 @@ td {
 .fl_btn {
     right: 0px;
     float: right;
+    margin: 2px;
+    background-color: #4f7db1;
+}
+
+.del_btn {
+    right: 0px;
+    background-color: rgb(159, 0, 0);
+    float: right;
+
 }
 
 .feedlotstats {
@@ -155,5 +171,5 @@ td {
 }
 
 .menuitems .nav-tabs {
-    border-bottom: 0px; 
+    border-bottom: 0px;
 }
