@@ -139,6 +139,20 @@ td {
     border-radius: 12px;
 }
 
+.widget-design {
+    /*width: 45%;
+    height: 20%;*/
+    background-color: #f8f8f8;
+    padding: 10px;
+    /*margin: 5px 5px 5px 5px;*/
+    display: inline-block;
+    float: left;
+    border-radius: 5px;
+    border: 2px solid #dcdcdd;
+    width: 100%;
+
+}
+
 .vertical-navbox {
         background-color: #292929;
         display: table-caption;
@@ -152,7 +166,7 @@ td {
 }
 
 
-.nav-tabs>li {
+.menuitems .nav-tabs>li {
     float: inherit;
     /*border: 0px 0px 2px 0px white solid;*/
     margin-bottom: -1px;
@@ -172,4 +186,8 @@ td {
 
 .menuitems .nav-tabs {
     border-bottom: 0px;
+}
+
+.feedlot-graph {
+    float: right;
 }

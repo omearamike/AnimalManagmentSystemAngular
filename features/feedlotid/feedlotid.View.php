@@ -1,31 +1,22 @@
-
-<div id="simple" ng-controller="MyController">
-  <p>Let's try this simple notify service, injected into the controller...</p>
-  <input ng-init="message='test'" ng-model="message" >
-  <button ng-click="callNotify(message);">NOTIFY</button>
-  <p>(you have to click 3 times to see an alert)</p>
-</div>
-
-<div ng-controller='viewFeedlotCtrl' ng-init="getSingleFeedlotDetails()">
-    <div ng-repeat="attribute in feedlotDetails">
-        <div class="feedlotContainer fl_details">
-            <div class="feedlotDetails fl_details">
-                <h5><b>Feedlot Name:</b> {{ attribute.feedlot_name }} </h5>
-                <p><b>Feedlot Name:</b> {{ attribute.custom}} </p>
-                <p><b>Feedlot Name:</b> {{ attribute.feedlot_id }} </p>
-                <p><b>Feedlot Name:</b> {{ attribute.feedlot_id }} </p>
-                <p><b>Feedlot Name:</b> {{ attribute.feedlot_id }} </p>
-                <p><b>Feedlot Name:</b> {{ attribute.feedlot_id }} </p>
-                <p><b>Feedlot Name:</b> {{ attribute.feedlot_id }} </p>
+        <div class="feedlotContainer widget-design">
+            <div>
+                <h5><b>Old Slat Unit </b> {{ attribute.feedlot_name }} </h5>
+                <p><b>Lot Number:</b> {{ record.lot_id }}</p>
+                <p><b>Name:</b> {{ record.name_feedlot }}</p>
+                <p><b>Total Animal Count:</b> {{ record.animal_count }}</p>
+                <p><b>Date Created: </b> {{ record.date_created }}</p>
+                <p><b>ADG:</b> {{ record.adg_feedlot }}</p>
+                <p><b>Avg Weight:</b> {{ record.avg_weight }}</p>
+                <p> <b>Min:</b> {{ record.min_weight }} <b>Max:</b>{{ record.max_weight }}</p>
+                <p><b>Avg Age:</b> {{ record.avg_age }}</p>
+                <p><b>Estimated Value:</b> {{ record.estimated_value | currency:"€"}}</p>
             </div>
+            <img class="feedlot-graph" title="Interactive Graph" src="https://designmodo.com/wp-content/uploads/2012/08/preview.png" alt="Interactive Graph" width="400" height=auto>
         </div>
 
 
 
 
-
-<div class="btng_feedlot">
-        <!-- modal for creating a new feedlot -->
         <div id="modal-allanimals" class="modal editAnimalPopUp">
             <div class="modal-content">
                 <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em" ng-click="closeForm()"><i class="material-icons left"></i>Close</a>
@@ -60,13 +51,12 @@
                 </table>
             </div>
         </div>
-    </div>
 </div> <!-- End of Feedlot Details Loop -->
 </div> <!-- End of viewFeedlotCtrl Controller -->
 
-    <div class="fl_details">
-            <a ng-controller='animalCtrl' ng-click="displayAllAnimals()" class="waves-effect waves-light btn margin-bottom-1em fl_btn"><i class="material-icons left"></i>Add Animals</a>
-            <a id="#btn-add-animal-weight" class="waves-effect waves-light btn margin-bottom-1em fl_btn" ng-click="editAnimals()"><i class="material-icons left"></i>Add Weight</a>
+    <div class="fl_details widget-design">
+            <!-- <a ng-controller='animalCtrl' ng-click="displayAllAnimals()" class="waves-effect waves-light btn margin-bottom-1em fl_btn"><i class="material-icons left"></i>Add Animals</a>
+            <a id="#btn-add-animal-weight" class="waves-effect waves-light btn margin-bottom-1em fl_btn" ng-click="editAnimals()"><i class="material-icons left"></i>Add Weight</a> -->
 
                     <!-- table that shows product record list -->
                     <table class="bordered">

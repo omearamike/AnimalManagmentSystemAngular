@@ -13,3 +13,10 @@ $widgets.directive('feedlotId', function() {
         templateUrl: 'features/feedlotid/feedlotid.View.php'
     };
 });
+
+$widgets.directive('feedlotidSubmenu', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'features/feedlotidsubmenu/feedlotidsubmenu.View.php'
+    };
+});

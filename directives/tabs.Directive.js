@@ -1,14 +1,24 @@
-var $tabs = angular.module('myapp.tabs', []);
+/**
+ * The angular tabs module
+ * @author: nerv
+ * @version: 0.2.5, 2012-08-25
+ */
+(function(angular) {
 
-    $tabs.directive('ngTabs', ngTabsDirective);
+    'use strict';
 
-    $tabs.directive('ngTabsDirective', function() {
+    angular.module('myapp.tabs', []);
+
+    angular.module('myapp.tabs')
+        .directive('ngTabs', ngTabsDirective);
+
+    function ngTabsDirective() {
         return {
             scope: true,
             restrict: 'EAC',
             controller: ngTabsController
         };
-    });
+    }
 
     function ngTabsController($scope) {
         $scope.tabs = {
@@ -31,7 +41,7 @@ var $tabs = angular.module('myapp.tabs', []);
     ngTabsController.$inject = ['$scope'];
 
 
-    angular.module('tabs')
+    angular.module('myapp.tabs')
         .directive('ngTabHead', ngTabHeadDirective);
 
     function ngTabHeadDirective() {
@@ -59,7 +69,7 @@ var $tabs = angular.module('myapp.tabs', []);
     }
 
 
-    angular.module('tabs')
+    angular.module('myapp.tabs')
         .directive('ngTabBody', ngTabBodyDirective);
 
     function ngTabBodyDirective() {
@@ -75,4 +85,6 @@ var $tabs = angular.module('myapp.tabs', []);
                 });
             }
         };
-    };
+    }
+
+})(angular);

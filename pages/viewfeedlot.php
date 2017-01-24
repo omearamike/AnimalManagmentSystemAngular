@@ -1,2 +1,1 @@
-
 <my-customer></my-customer>
