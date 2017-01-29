@@ -1,1 +1,0 @@
-<my-customer></my-customer>

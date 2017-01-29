@@ -1,6 +1,6 @@
-<div ng-controller='animalCtrl'>
+<!-- <div ng-controller='animalCtrl'>
 
 
 
 
-</div>
+</div> -->
