@@ -28,6 +28,7 @@
           <script type="text/javascript" src="services/feedlot.Factory.js"></script>
 
           <script type="text/javascript" src="features/displayfeedlot/displayfeedlot.Controller.js"></script>
+          <script type="text/javascript" src="features/feedlotid/feedlotid.Controller.js"></script>
           <script type="text/javascript" src="features/displayanimals/displayanimals.Controller.js"></script>
           <!-- Bootstrap -->
           <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">

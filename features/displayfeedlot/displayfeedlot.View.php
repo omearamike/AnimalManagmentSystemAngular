@@ -1,6 +1,3 @@
-<!-- <script type="text/javascript" src="/displayfeedlot.Controller.js"></script> -->
-<!-- <script type="text/javascript" src="features/displayfeedlot/displayfeedlot.Controller.js"></script> -->
-
 <main>
   <section>
     <div class="rad-body-wrapper">
@@ -10,10 +7,9 @@
               <div class="col-md-12">
             	<div class="panel panel-default">
             	  <div class="panel-heading">
-            		<h3 class="panel-title">Bar Chart</h3>
+            		<h3 class="panel-title">Feedlot Dashboard</h3>
             	  </div>
             	  <div class="panel-body">
-            <!-- <div ng-controller='feedlotController'> -->
             <div ng-controller='feedlotController' ng-init="getFeedlot()">
                 <div ng-repeat="record in feedlots.feedlot_records.feedlots">
 
