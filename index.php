@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fffarm App</title>
+  <title>Ffffarm App</title>
 
 
           <!-- Libs -->
